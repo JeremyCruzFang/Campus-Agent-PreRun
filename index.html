@@ -1,0 +1,288 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>NUIST 2026 入学助手</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet">
+  <style>
+    :root {
+      --bg: #0f0f12;
+      --card: rgba(255, 255, 255, 0.06);
+      --text: #ffffff;
+      --sub: rgba(255, 255, 255, 0.65);
+      --pill: rgba(255, 255, 255, 0.14);
+      --accent: #ffffff;
+      --radius: 28px;
+      --blur: blur(24px);
+    }
+
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+
+    body {
+      font-family: "Inter", -apple-system, BlinkMacSystemFont, "SF Pro Display", sans-serif;
+      background: radial-gradient(circle at top, #1a1a22, #0b0b0e 70%);
+      color: var(--text);
+      min-height: 100vh;
+      overflow-x: hidden;
+    }
+
+    .container {
+      max-width: 1080px;
+      margin: 0 auto;
+      padding: 80px 24px 120px;
+    }
+
+    /* ===== 顶部 Hero ===== */
+    .hero {
+      text-align: center;
+      margin-bottom: 96px;
+      opacity: 0;
+      transform: translateY(20px);
+      animation: fadeUp 1.1s ease forwards;
+    }
+
+    .hero h1 {
+      font-size: clamp(36px, 6vw, 68px);
+      font-weight: 600;
+      letter-spacing: -0.02em;
+      margin-bottom: 16px;
+    }
+
+    .hero p {
+      font-size: 18px;
+      color: var(--sub);
+    }
+
+    .hero .pill {
+      display: inline-block;
+      margin-top: 28px;
+      padding: 10px 18px;
+      border-radius: 999px;
+      background: var(--pill);
+      font-size: 14px;
+      color: var(--sub);
+    }
+
+    /* ===== 核心功能卡片 ===== */
+    .grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+      gap: 28px;
+    }
+
+    .card {
+      background: linear-gradient(
+        145deg,
+        rgba(255, 255, 255, 0.12),
+        rgba(255, 255, 255, 0.02)
+      );
+      border-radius: var(--radius);
+      padding: 32px 28px 36px;
+      backdrop-filter: var(--blur);
+      -webkit-backdrop-filter: var(--blur);
+      border: 1px solid rgba(255, 255, 255, 0.08);
+      min-height: 210px;
+      cursor: pointer;
+      position: relative;
+      overflow: hidden;
+      transform: translateY(40px);
+      opacity: 0;
+    }
+
+    .card.visible {
+      animation: fadeUp 0.9s ease forwards;
+    }
+
+    .card::after {
+      content: "";
+      position: absolute;
+      inset: 0;
+      background: radial-gradient(
+        500px circle at var(--x, 50%) var(--y, 50%),
+        rgba(255, 255, 255, 0.15),
+        transparent 40%
+      );
+      opacity: 0;
+      transition: opacity 0.3s ease;
+    }
+
+    .card:hover::after {
+      opacity: 1;
+    }
+
+    .card h3 {
+      font-size: 22px;
+      font-weight: 500;
+      margin-bottom: 10px;
+    }
+
+    .card p {
+      font-size: 15px;
+      line-height: 1.6;
+      color: var(--sub);
+    }
+
+    .card .arrow {
+      position: absolute;
+      right: 24px;
+      bottom: 22px;
+      font-size: 18px;
+      opacity: 0.5;
+      transition: transform 0.3s ease, opacity 0.3s ease;
+    }
+
+    .card:hover .arrow {
+      transform: translateX(6px);
+      opacity: 1;
+    }
+
+    /* ===== 联系方式区 ===== */
+    .contact {
+      margin-top: 108px;
+      text-align: center;
+      opacity: 0;
+      transform: translateY(40px);
+    }
+
+    .contact.visible {
+      animation: fadeUp 1s ease forwards;
+    }
+
+    .contact h2 {
+      font-size: 28px;
+      font-weight: 500;
+      margin-bottom: 14px;
+    }
+
+    .contact p {
+      font-size: 16px;
+      color: var(--sub);
+      margin-bottom: 28px;
+    }
+
+    .contact .pill-btn {
+      display: inline-flex;
+      align-items: center;
+      gap: 10px;
+      padding: 12px 22px;
+      border-radius: 999px;
+      background: linear-gradient(145deg, #ffffff, #d6d6d6);
+      color: #000;
+      font-size: 14px;
+      text-decoration: none;
+      transition: transform 0.2s ease, box-shadow 0.2s ease;
+    }
+
+    .contact .pill-btn:hover {
+      transform: translateY(-2px);
+      box-shadow: 0 10px 30px rgba(0, 0, 0, 0.35);
+    }
+
+    @keyframes fadeUp {
+      to {
+        opacity: 1;
+        transform: translateY(0);
+      }
+    }
+
+    @media (min-width: 960px) {
+      .hero p {
+        font-size: 19px;
+      }
+    }
+  </style>
+</head>
+<body>
+  <div class="container">
+
+    <!-- Hero 区域 -->
+    <section class="hero">
+      <h1>为 2026 级新生而生</h1>
+      <p>入学流程、校园服务、必备物资，一站式解决</p>
+      <span class="pill">NUIST Freshman Assistant</span>
+    </section>
+
+    <!-- 功能入口区域 -->
+    <section class="grid">
+      <div class="card">
+        <h3>校园流量卡</h3>
+        <p>稳定高速、真实测评，适合新生使用的最优套餐推荐。</p>
+        <span class="arrow">→</span>
+      </div>
+
+      <div class="card">
+        <h3>寝室用具</h3>
+        <p>床垫、收纳、台灯、插排，一次选齐，不踩雷。</p>
+        <span class="arrow">→</span>
+      </div>
+
+      <div class="card">
+        <h3>校园地图</h3>
+        <p>教学楼、宿舍、食堂、快递点，第一天也不会迷路。</p>
+        <span class="arrow">→</span>
+      </div>
+
+      <div class="card">
+        <h3>校园官网入口</h3>
+        <p>教务、学工、缴费、通知，官方信息直达。</p>
+        <span class="arrow">→</span>
+      </div>
+    </section>
+
+    <!-- 联系方式区域 -->
+    <section class="contact">
+      <h2>本站负责人</h2>
+      <p>入学任何问题，均可直接联系咨询</p>
+      <a href="#" class="pill-btn">添加微信咨询</a>
+    </section>
+
+  </div>
+
+  <script>
+    // 滚动出现动画
+    const observer = new IntersectionObserver(
+      entries => {
+        entries.forEach(entry => {
+          if (entry.isIntersecting) {
+            entry.target.classList.add("visible");
+          }
+        });
+      },
+      { threshold: 0.15 }
+    );
+
+    document.querySelectorAll(".card, .contact").forEach(el => {
+      observer.observe(el);
+    });
+
+    // 卡片光效跟随
+    document.querySelectorAll(".card").forEach(card => {
+      card.addEventListener("mousemove", e => {
+        const rect = card.getBoundingClientRect();
+        const x = e.clientX - rect.left;
+        const y = e.clientY - rect.top;
+        card.style.setProperty("--x", x + "px");
+        card.style.setProperty("--y", y + "px");
+      });
+    });
+    // 语言切换（示例级占位，不影响后续国际化扩展）
+    const langButtons = document.querySelectorAll(".lang-btn");
+    langButtons.forEach(btn => {
+      btn.addEventListener("click", () => {
+        langButtons.forEach(b => b.classList.remove("active"));
+        btn.classList.add("active");
+        // 这里只做 UI 状态切换，占位用于后续真正多语言接入
+        // console.log("Language switched to:", btn.dataset.lang);
+      });
+    });
+
+</script>
+</body>
+</html>
