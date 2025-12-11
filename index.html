@@ -4,6 +4,7 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>NUIST 2026 入学助手</title>
+
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet">
@@ -36,6 +37,12 @@
       color: var(--text);
       min-height: 100vh;
       overflow-x: hidden;
+    }
+
+    /* ===== A 方案：统一覆盖 <a> 默认样式 ===== */
+    a {
+      color: inherit !important;
+      text-decoration: none !important;
     }
 
     .page {
@@ -89,7 +96,6 @@
       gap: 6px;
     }
 
-    /* ===== 语言选择 ===== */
     .lang-switch {
       display: inline-flex;
       align-items: center;
@@ -122,6 +128,28 @@
     .lang-btn.active {
       background: #ffffff;
       color: #000;
+    }
+
+    .nav-pill {
+      padding: 6px 12px;
+      border-radius: 999px;
+      background: transparent;
+      border: 1px solid transparent;
+      font-size: 12px;
+      color: var(--sub);
+      transition: background 0.2s ease, border-color 0.2s ease, color 0.2s ease;
+    }
+
+    .nav-pill:hover {
+      background: rgba(255, 255, 255, 0.08);
+      border-color: rgba(255, 255, 255, 0.18);
+      color: var(--text);
+    }
+
+    .nav-pill.primary {
+      background: #ffffff;
+      color: #000;
+      border-color: transparent;
     }
 
     /* ===== Hero ===== */
@@ -310,7 +338,7 @@
 
 <body>
 
-  <!-- ===== 顶部导航 ===== -->
+  <!-- 顶部导航 -->
   <div class="nav-shell">
     <nav class="nav">
       <div class="nav-left">
@@ -323,8 +351,7 @@
         <a href="#map" class="nav-pill">校园地图</a>
         <a href="#contact" class="nav-pill primary">联系学长</a>
 
-        <!-- 语言选择 -->
-        <div class="lang-switch" aria-label="Language Switch">
+        <div class="lang-switch">
           <span class="lang-globe">🌐</span>
           <button class="lang-btn active" data-lang="zh">中文</button>
           <button class="lang-btn" data-lang="en">EN</button>
@@ -333,37 +360,34 @@
     </nav>
   </div>
 
-  <!-- ===== 主体内容 ===== -->
+  <!-- 主体 -->
   <main class="page">
 
     <div class="hero-wrap">
-      <section class="hero" id="top">
+      <section class="hero">
         <h1>欢迎来到 NUIST，2026 级新同学</h1>
         <p>从收到录取通知书，到躺在宿舍床上，这里是一站式入学助手。</p>
         <div class="hero-sub">我们把流程、物资、常见疑问梳理好，你只需要安心来报到。</div>
       </section>
     </div>
 
-    <!-- ===== 功能入口卡片 ===== -->
+    <!-- 功能入口卡片 -->
     <section class="grid" id="cards">
 
-      <!-- 校园流量卡 -->
-      <article class="card" id="flow-card">
+      <article class="card">
         <div class="card-tag"><span class="card-tag-dot"></span> 报到前就能确定</div>
         <h3>校园流量卡</h3>
         <p>对比运营商套餐、校园专属活动和真实网速体验，给出更适合新生的几种组合建议。</p>
         <span class="arrow">→</span>
       </article>
 
-      <!-- 寝室用具 -->
-      <article class="card" id="dorm-card">
+      <article class="card">
         <div class="card-tag"><span class="card-tag-dot"></span> 一次选齐，不踩雷</div>
         <h3>寝室用具</h3>
         <p>床垫、四件套、收纳、台灯、插排等必需品清单，按预算和舍友风格提供推荐方案。</p>
         <span class="arrow">→</span>
       </article>
 
-      <!-- 校园地图 -->
       <article class="card" id="map">
         <div class="card-tag"><span class="card-tag-dot"></span> 第一天下楼也不迷路</div>
         <h3>校园地图</h3>
@@ -371,14 +395,13 @@
         <span class="arrow">→</span>
       </article>
 
-      <!-- 校园官网入口（可跳转） -->
       <a
         class="card"
         id="official"
         href="https://www.nuist.edu.cn"
         target="_blank"
         rel="noopener noreferrer"
-        style="display:block; text-decoration:none; color:inherit;"
+        style="display:block;"
       >
         <div class="card-tag"><span class="card-tag-dot"></span> 官方信息直达</div>
         <h3>校园官网入口</h3>
@@ -388,7 +411,7 @@
 
     </section>
 
-    <!-- ===== 联系方式区域 ===== -->
+    <!-- 联系方式 -->
     <section class="contact" id="contact">
       <h2>需要一个学长 / 学姐带一程？</h2>
       <p>如果你在准备行李、选择流量卡、安排到校时间时有任何疑问，可以直接加本站负责人微信咨询。</p>
@@ -404,40 +427,33 @@
 
   </main>
 
-  <!-- ===== 脚本区 ===== -->
+  <!-- 脚本 -->
   <script>
-    // 滚动出现动画
+    // 滚动动效
     const observer = new IntersectionObserver(
       entries => {
         entries.forEach(entry => {
-          if (entry.isIntersecting) {
-            entry.target.classList.add("visible");
-          }
+          if (entry.isIntersecting) entry.target.classList.add("visible");
         });
       },
       { threshold: 0.18 }
     );
 
-    document.querySelectorAll(".card, .contact").forEach(el => {
-      observer.observe(el);
-    });
+    document.querySelectorAll(".card, .contact").forEach(el => observer.observe(el));
 
-    // 卡片光效跟随
+    // 卡片光效
     document.querySelectorAll(".card").forEach(card => {
       card.addEventListener("mousemove", e => {
         const rect = card.getBoundingClientRect();
-        const x = e.clientX - rect.left;
-        const y = e.clientY - rect.top;
-        card.style.setProperty("--x", x + "px");
-        card.style.setProperty("--y", y + "px");
+        card.style.setProperty("--x", (e.clientX - rect.left) + "px");
+        card.style.setProperty("--y", (e.clientY - rect.top) + "px");
       });
     });
 
-    // 语言切换（占位，未来可扩展为真正国际化）
-    const langButtons = document.querySelectorAll(".lang-btn");
-    langButtons.forEach(btn => {
+    // 语言切换
+    document.querySelectorAll(".lang-btn").forEach(btn => {
       btn.addEventListener("click", () => {
-        langButtons.forEach(b => b.classList.remove("active"));
+        document.querySelectorAll(".lang-btn").forEach(b => b.classList.remove("active"));
         btn.classList.add("active");
       });
     });
