@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>添加微信 · NUIST 2026 入学助手</title>
+  <title data-i18n="page_title">添加微信 · NUIST 2026 入学助手</title>
 
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -51,6 +51,7 @@
       align-items: center;
       justify-content: space-between;
       margin-bottom: 18px;
+      gap: 12px;
     }
 
     .title-block h1 {
@@ -65,6 +66,12 @@
       color: var(--sub);
     }
 
+    .top-actions {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+    }
+
     .back-link {
       font-size: 13px;
       color: var(--sub);
@@ -74,16 +81,57 @@
       background: rgba(0,0,0,0.28);
       border: 1px solid rgba(255,255,255,0.1);
       cursor: pointer;
+      white-space: nowrap;
     }
 
     .back-link:hover {
       background: rgba(255,255,255,0.08);
     }
 
+    /* 语言切换（与首页风格保持一致） */
+    .lang-switch {
+      display: inline-flex;
+      align-items: center;
+      gap: 4px;
+      padding: 4px;
+      border-radius: 999px;
+      background: rgba(255,255,255,0.06);
+      border: 1px solid rgba(255,255,255,0.1);
+    }
+
+    .lang-globe {
+      font-size: 12px;
+      padding: 4px 6px;
+      color: var(--sub);
+      user-select: none;
+    }
+
+    .lang-btn {
+      border-radius: 999px;
+      padding: 4px 10px;
+      font-size: 11px;
+      border: none;
+      background: transparent;
+      color: var(--sub);
+      cursor: pointer;
+      transition: background .18s ease, color .18s ease;
+    }
+
+    .lang-btn.active {
+      background: #ffffff;
+      color: #000;
+    }
+
     .hint {
       font-size: 12px;
       color: var(--sub);
       margin-bottom: 20px;
+    }
+
+    .hint strong {
+      font-weight: 600;
+      color: #fff;
+      letter-spacing: 0.04em;
     }
 
     .options {
@@ -104,6 +152,7 @@
       align-items: center;
       justify-content: space-between;
       margin-bottom: 8px;
+      gap: 8px;
     }
 
     .option-title {
@@ -117,6 +166,7 @@
       border-radius: 999px;
       background: rgba(255,255,255,0.1);
       color: var(--sub);
+      white-space: nowrap;
     }
 
     .option-text {
@@ -137,6 +187,7 @@
       background: rgba(255,255,255,0.9);
       color: #000;
       transition: transform .15s ease, box-shadow .15s ease, background .15s ease;
+      white-space: nowrap;
     }
 
     .option-btn.secondary {
@@ -163,12 +214,6 @@
       font-size: 13px;
       color: var(--sub);
       display: none;
-    }
-
-    .pc-panel strong {
-      font-size: 16px;
-      color: #ffffff;
-      letter-spacing: 0.04em;
     }
 
     .wechat-id-pill {
@@ -206,18 +251,10 @@
       .top-row {
         flex-direction: column;
         align-items: flex-start;
-        gap: 8px;
       }
 
-      .back-link {
+      .top-actions {
         align-self: flex-end;
-      }
-    }
-
-    @keyframes fadeUp {
-      to {
-        opacity: 1;
-        transform: translateY(0);
       }
     }
   </style>
@@ -227,44 +264,58 @@
   <div class="shell">
     <div class="top-row">
       <div class="title-block">
-        <h1>添加微信</h1>
-        <p>选择你现在使用的设备，我们帮你尽量减轻操作步骤。</p>
+        <h1 data-i18n="add_title">添加微信</h1>
+        <p data-i18n="add_subtitle">选择你现在使用的设备，我们帮你尽量减轻操作步骤。</p>
       </div>
-      <a href="index.html" class="back-link">← 返回首页</a>
+      <div class="top-actions">
+        <div class="lang-switch">
+          <span class="lang-globe">🌐</span>
+          <button class="lang-btn active" data-lang="zh">中文</button>
+          <button class="lang-btn" data-lang="en">EN</button>
+        </div>
+        <a href="index.html" class="back-link" data-i18n="back_home">← 返回首页</a>
+      </div>
     </div>
 
-    <p class="hint">微信号统一为：<strong>bomarte88</strong></p>
+    <p class="hint">
+      <span data-i18n="hint_label">微信号统一为：</span>
+      <strong>bomarte88</strong>
+    </p>
 
     <div class="options">
       <!-- 手机端 -->
       <div class="option-card">
         <div class="option-head">
-          <div class="option-title">我现在在手机上</div>
-          <span class="chip">推荐</span>
+          <div class="option-title" data-i18n="mobile_title">我现在在手机上</div>
+          <span class="chip" data-i18n="mobile_chip">推荐</span>
         </div>
-        <p class="option-text">
+        <p class="option-text" data-i18n="mobile_text">
           我们会尝试帮你复制微信号，并唤起微信 App。若未能自动跳转，你只需要切到微信，粘贴并搜索即可。
         </p>
-        <button class="option-btn" id="btn-mobile">复制微信号并尝试打开微信</button>
+        <button class="option-btn" id="btn-mobile" data-i18n="mobile_btn">
+          复制微信号并尝试打开微信
+        </button>
       </div>
 
       <!-- 电脑端 -->
       <div class="option-card">
         <div class="option-head">
-          <div class="option-title">我现在在电脑上</div>
+          <div class="option-title" data-i18n="pc_title">我现在在电脑上</div>
         </div>
-        <p class="option-text">
+        <p class="option-text" data-i18n="pc_text">
           会在下方显示微信号，方便你拿起手机，在“添加朋友”中手动输入或复制。
         </p>
-        <button class="option-btn secondary" id="btn-pc">显示微信号</button>
+        <button class="option-btn secondary" id="btn-pc" data-i18n="pc_btn">
+          显示微信号
+        </button>
 
         <div class="pc-panel" id="pc-panel">
-          <div>微信号：</div>
+          <div data-i18n="pc_panel_label">微信号：</div>
           <div class="wechat-id-pill">
             <span class="wechat-dot"></span>
             <span id="wechat-id-text">bomarte88</span>
           </div>
-          <div style="margin-top:8px;">
+          <div style="margin-top:8px;" data-i18n="pc_panel_help">
             建议在手机微信中：<br>
             「添加朋友」→「微信号/手机号」→ 输入或粘贴以上微信号。
           </div>
@@ -272,18 +323,122 @@
       </div>
     </div>
 
-    <div class="foot-tip">如有任何问题，你也可以回到首页，通过其他方式联系到我。</div>
+    <div class="foot-tip" data-i18n="foot_tip">
+      如有任何问题，你也可以回到首页，通过其他方式联系到我。
+    </div>
   </div>
 
   <script>
     const WECHAT_ID = "bomarte88";
 
+    // ===== 语言包（wechat-add 页面） =====
+    const i18n = {
+      zh: {
+        page_title: "添加微信 · NUIST 2026 入学助手",
+        add_title: "添加微信",
+        add_subtitle: "选择你现在使用的设备，我们帮你尽量减轻操作步骤。",
+        back_home: "← 返回首页",
+        hint_label: "微信号统一为：",
+
+        mobile_title: "我现在在手机上",
+        mobile_chip: "推荐",
+        mobile_text: "我们会尝试帮你复制微信号，并唤起微信 App。若未能自动跳转，你只需要切到微信，粘贴并搜索即可。",
+        mobile_btn: "复制微信号并尝试打开微信",
+
+        pc_title: "我现在在电脑上",
+        pc_text: "会在下方显示微信号，方便你拿起手机，在“添加朋友”中手动输入或复制。",
+        pc_btn: "显示微信号",
+        pc_panel_label: "微信号：",
+        pc_panel_help: "建议在手机微信中：\n「添加朋友」→「微信号/手机号」→ 输入或粘贴以上微信号。",
+
+        foot_tip: "如有任何问题，你也可以回到首页，通过其他方式联系到我。",
+
+        alert_copied: "已复制微信号：",
+        alert_copied_tail: "若未能自动打开微信，请手动切换到微信，在添加朋友处粘贴。",
+        alert_copy_failed: "请手动记下微信号：",
+        alert_copy_failed_tail: "当前浏览器不支持自动复制。"
+      },
+      en: {
+        page_title: "Add WeChat · NUIST 2026 Onboarding Assistant",
+        add_title: "Add WeChat",
+        add_subtitle: "Choose the device you are using now and we will simplify the steps for you.",
+        back_home: "← Back to Home",
+        hint_label: "WeChat ID:",
+
+        mobile_title: "I'm on my phone",
+        mobile_chip: "Recommended",
+        mobile_text: "We will try to copy the WeChat ID and open the WeChat app. If it does not open automatically, just switch to WeChat and paste it in Add Contacts.",
+        mobile_btn: "Copy ID and try to open WeChat",
+
+        pc_title: "I'm on a computer",
+        pc_text: "The WeChat ID will be shown below so you can add it on your phone via “Add Contacts”.",
+        pc_btn: "Show WeChat ID",
+        pc_panel_label: "WeChat ID:",
+        pc_panel_help: "On your phone: \n“Add Contacts” → “WeChat ID / Mobile” → type or paste the ID above.",
+
+        foot_tip: "If anything feels unclear, you can always go back to the homepage and reach me in other ways.",
+
+        alert_copied: "WeChat ID copied: ",
+        alert_copied_tail: "If WeChat doesn’t open automatically, please switch to WeChat and paste it in Add Contacts.",
+        alert_copy_failed: "Please note this WeChat ID: ",
+        alert_copy_failed_tail: "Your current browser does not support auto copy."
+      }
+    };
+
+    let currentLang = "zh";
+
+    function applyLanguage(lang) {
+      const dict = i18n[lang] || i18n.zh;
+      currentLang = lang;
+
+      document.querySelectorAll("[data-i18n]").forEach(el => {
+        const key = el.dataset.i18n;
+        if (dict[key]) {
+          // support \n -> <br> for some texts
+          if (dict[key].includes("\n")) {
+            el.innerHTML = dict[key].replace(/\n/g, "<br>");
+          } else {
+            el.textContent = dict[key];
+          }
+        }
+      });
+
+      document.documentElement.lang = lang === "zh" ? "zh-CN" : "en";
+
+      document.querySelectorAll(".lang-btn").forEach(btn => {
+        btn.classList.toggle("active", btn.dataset.lang === lang);
+      });
+
+      try {
+        localStorage.setItem("lang", lang);
+      } catch (e) {}
+    }
+
+    // 从 localStorage 读取全站语言设置
+    const savedLang = (function() {
+      try {
+        return localStorage.getItem("lang") || "zh";
+      } catch (e) {
+        return "zh";
+      }
+    })();
+
+    applyLanguage(savedLang);
+
+    document.querySelectorAll(".lang-btn").forEach(btn => {
+      btn.addEventListener("click", () => {
+        const lang = btn.dataset.lang;
+        applyLanguage(lang);
+      });
+    });
+
     const btnMobile = document.getElementById("btn-mobile");
     const btnPc = document.getElementById("btn-pc");
     const pcPanel = document.getElementById("pc-panel");
 
-    // 手机端：复制微信号并尝试唤起微信
+    // 手机端：复制 + 尝试拉起微信
     btnMobile.addEventListener("click", async () => {
+      const dict = i18n[currentLang] || i18n.zh;
       let copied = false;
 
       if (navigator.clipboard && navigator.clipboard.writeText) {
@@ -296,20 +451,27 @@
       }
 
       if (copied) {
-        alert("已复制微信号： " + WECHAT_ID + "\\n若未能自动打开微信，请手动切换到微信，在添加朋友处粘贴。");
+        alert(
+          (dict.alert_copied || "") +
+          " " + WECHAT_ID + "\n" +
+          (dict.alert_copied_tail || "")
+        );
       } else {
-        alert("请手动记下微信号： " + WECHAT_ID + "\\n当前浏览器不支持自动复制。");
+        alert(
+          (dict.alert_copy_failed || "") +
+          " " + WECHAT_ID + "\n" +
+          (dict.alert_copy_failed_tail || "")
+        );
       }
 
-      // 尝试拉起微信（不同系统与浏览器兼容性不同，可能无效）
       try {
         window.location.href = "weixin://";
       } catch (e) {
-        // 静默失败即可
+        // ignore
       }
     });
 
-    // 电脑端：展示微信号面板
+    // 电脑端：展开微信号面板
     btnPc.addEventListener("click", () => {
       pcPanel.style.display = "block";
     });
