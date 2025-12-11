@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>NUIST 2026 入学助手</title>
+  <title data-i18n="app_title">NUIST 2026 入学助手</title>
 
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -334,13 +334,13 @@
     <nav class="nav">
       <div class="nav-left">
         <span class="nav-dot"></span>
-        <span>NUIST 2026 入学助手</span>
+        <span data-i18n="app_title">NUIST 2026 入学助手</span>
       </div>
 
       <div class="nav-right">
-        <a href="#cards" class="nav-pill">服务总览</a>
-        <a href="#map" class="nav-pill">校园地图</a>
-        <a href="#contact" class="nav-pill primary">联系学长</a>
+        <a href="#cards" class="nav-pill" data-i18n="nav_overview">服务总览</a>
+        <a href="#map" class="nav-pill" data-i18n="nav_map">校园地图</a>
+        <a href="#contact" class="nav-pill primary" data-i18n="nav_contact">联系学长</a>
 
         <!-- 语言切换 -->
         <div class="lang-switch">
@@ -357,9 +357,9 @@
 
     <div class="hero-wrap">
       <section class="hero">
-        <h1>欢迎来到 NUIST，2026 级新同学</h1>
-        <p>从收到录取通知书，到躺在宿舍床上，这里是一站式入学助手。</p>
-        <div class="hero-sub">我们把流程、物资、常见疑问梳理好，你只需要安心来报到。</div>
+        <h1 data-i18n="hero_title">欢迎来到 NUIST，2026 级新同学</h1>
+        <p data-i18n="hero_desc">从收到录取通知书，到躺在宿舍床上，这里是一站式入学助手。</p>
+        <div class="hero-sub" data-i18n="hero_sub">我们把流程、物资、常见疑问梳理好，你只需要安心来报到。</div>
       </section>
     </div>
 
@@ -368,45 +368,65 @@
 
       <!-- 校园流量卡 -->
       <article class="card">
-        <div class="card-tag"><span class="card-tag-dot"></span> 报到前就能确定</div>
-        <h3>校园流量卡</h3>
-        <p>对比运营商套餐、校园专属活动和真实网速体验，给出更适合新生的几种组合建议。</p>
+        <div class="card-tag">
+          <span class="card-tag-dot"></span>
+          <span data-i18n="flow_tag">报到前就能确定</span>
+        </div>
+        <h3 data-i18n="flow_title">校园流量卡</h3>
+        <p data-i18n="flow_body">
+          对比运营商套餐、校园专属活动和真实网速体验，给出更适合新生的几种组合建议。
+        </p>
         <span class="arrow">→</span>
       </article>
 
       <!-- 寝室用具 -->
       <article class="card">
-        <div class="card-tag"><span class="card-tag-dot"></span> 一次选齐，不踩雷</div>
-        <h3>寝室用具</h3>
-        <p>床垫、四件套、收纳、台灯、插排等必需品清单，按预算和舍友风格提供推荐方案。</p>
+        <div class="card-tag">
+          <span class="card-tag-dot"></span>
+          <span data-i18n="dorm_tag">一次选齐，不踩雷</span>
+        </div>
+        <h3 data-i18n="dorm_title">寝室用具</h3>
+        <p data-i18n="dorm_body">
+          床垫、四件套、收纳、台灯、插排等必需品清单，按预算和舍友风格提供推荐方案。
+        </p>
         <span class="arrow">→</span>
       </article>
 
-      <!-- 校园地图（改成 <a>） -->
-      <a 
+      <!-- 校园地图（<a> 卡片） -->
+      <a
         class="card"
         id="map"
         href="https://map.nuist.edu.cn/"
         target="_blank"
         rel="noopener noreferrer"
       >
-        <div class="card-tag"><span class="card-tag-dot"></span> 第一天下楼也不迷路</div>
-        <h3>校园地图</h3>
-        <p>教学楼、宿舍区、食堂、校医院、快递点与公交站，一张图把你常去的地方先认识一遍。</p>
+        <div class="card-tag">
+          <span class="card-tag-dot"></span>
+          <span data-i18n="map_tag">第一天下楼也不迷路</span>
+        </div>
+        <h3 data-i18n="map_title">校园地图</h3>
+        <p data-i18n="map_body">
+          教学楼、宿舍区、食堂、校医院、快递点与公交站，一张图把你常去的地方先认识一遍。
+        </p>
         <span class="arrow">→</span>
       </a>
 
       <!-- 校园官网入口 -->
-      <a 
+      <a
         class="card"
         id="official"
         href="https://www.nuist.edu.cn"
         target="_blank"
         rel="noopener noreferrer"
       >
-        <div class="card-tag"><span class="card-tag-dot"></span> 官方信息直达</div>
-        <h3>校园官网入口</h3>
-        <p>教务系统、通知公告、费用缴纳、宿舍信息等官方入口统一收纳，一处点击即可跳转。</p>
+        <div class="card-tag">
+          <span class="card-tag-dot"></span>
+          <span data-i18n="official_tag">官方信息直达</span>
+        </div>
+        <h3 data-i18n="official_title">校园官网入口</h3>
+        <p data-i18n="official_body">
+          教务系统、通知公告、费用缴纳、宿舍信息等官方入口统一收纳，一处点击即可跳转。
+        </p>
         <span class="arrow">→</span>
       </a>
 
@@ -414,50 +434,161 @@
 
     <!-- ===== 联系方式 ===== -->
     <section class="contact" id="contact">
-      <h2>需要一个学长 / 学姐带一程？</h2>
-      <p>如果你在准备行李、选择流量卡、安排到校时间时有任何疑问，可以直接加本站负责人微信咨询。</p>
+      <h2 data-i18n="contact_title">需要一个学长 / 学姐带一程？</h2>
+      <p data-i18n="contact_body">
+        如果你在准备行李、选择流量卡、安排到校时间时有任何疑问，可以直接加本站负责人微信咨询。
+      </p>
 
       <div class="pill-row">
-        <div class="contact-pill">回复慢不用担心，我们会逐条认真看完</div>
-        <div class="contact-pill">优先解决 2026 级 NUIST 新生相关问题</div>
+        <div class="contact-pill" data-i18n="contact_pill1">
+          回复慢不用担心，我们会逐条认真看完
+        </div>
+        <div class="contact-pill" data-i18n="contact_pill2">
+          优先解决 2026 级 NUIST 新生相关问题
+        </div>
       </div>
 
       <a href="wechat-add.html" class="pill-btn">
         <span>＋</span>
-        <span>添加微信 · 一对一入学答疑</span>
+        <span data-i18n="contact_btn">添加微信 · 一对一入学答疑</span>
       </a>
     </section>
 
   </main>
 
-  <!-- ===== JS 动效 ===== -->
+  <!-- ===== JS：动效 + 国际化 ===== -->
   <script>
-    // 卡片进入动效
+    // ===== 语言包 =====
+    const i18n = {
+      zh: {
+        app_title: "NUIST 2026 入学助手",
+        nav_overview: "服务总览",
+        nav_map: "校园地图",
+        nav_contact: "联系学长",
+
+        hero_title: "欢迎来到 NUIST，2026 级新同学",
+        hero_desc: "从收到录取通知书，到躺在宿舍床上，这里是一站式入学助手。",
+        hero_sub: "我们把流程、物资、常见疑问梳理好，你只需要安心来报到。",
+
+        flow_tag: "报到前就能确定",
+        flow_title: "校园流量卡",
+        flow_body: "对比运营商套餐、校园专属活动和真实网速体验，给出更适合新生的几种组合建议。",
+
+        dorm_tag: "一次选齐，不踩雷",
+        dorm_title: "寝室用具",
+        dorm_body: "床垫、四件套、收纳、台灯、插排等必需品清单，按预算和舍友风格提供推荐方案。",
+
+        map_tag: "第一天下楼也不迷路",
+        map_title: "校园地图",
+        map_body: "教学楼、宿舍区、食堂、校医院、快递点与公交站，一张图把你常去的地方先认识一遍。",
+
+        official_tag: "官方信息直达",
+        official_title: "校园官网入口",
+        official_body: "教务系统、通知公告、费用缴纳、宿舍信息等官方入口统一收纳，一处点击即可跳转。",
+
+        contact_title: "需要一个学长 / 学姐带一程？",
+        contact_body: "如果你在准备行李、选择流量卡、安排到校时间时有任何疑问，可以直接加本站负责人微信咨询。",
+        contact_pill1: "回复慢不用担心，我们会逐条认真看完",
+        contact_pill2: "优先解决 2026 级 NUIST 新生相关问题",
+        contact_btn: "添加微信 · 一对一入学答疑"
+      },
+      en: {
+        app_title: "NUIST 2026 Onboarding Assistant",
+        nav_overview: "Overview",
+        nav_map: "Campus Map",
+        nav_contact: "Contact Mentor",
+
+        hero_title: "Welcome to NUIST, Class of 2026",
+        hero_desc: "From receiving your admission letter to lying on your dorm bed, this is your one-stop onboarding assistant.",
+        hero_sub: "We整理流程, essentials, and FAQs so you can just focus on arriving with peace of mind.",
+
+        flow_tag: "Decide before check-in",
+        flow_title: "Campus Data Plans",
+        flow_body: "Compare carrier packages, campus-only deals, and real network experience to suggest plans that fit new students best.",
+
+        dorm_tag: "Get everything in one go",
+        dorm_title: "Dorm Essentials",
+        dorm_body: "Mattress toppers, bedding sets, storage, desk lamps, power strips—curated lists by budget and roommate style.",
+
+        map_tag: "Find your way from day one",
+        map_title: "Campus Map",
+        map_body: "Teaching buildings, dorms, canteens, clinic, parcel points, and bus stops—see the places you'll visit most at a glance.",
+
+        official_tag: "Official info in one tap",
+        official_title: "Official Portal",
+        official_body: "Academic affairs, announcements, tuition payment, dorm info—official links all in one place.",
+
+        contact_title: "Want a senior to guide you?",
+        contact_body: "If you have any questions about packing, choosing a data plan, or planning your arrival, you can add me on WeChat for help.",
+        contact_pill1: "Replies may be a bit slow, but every message will be read carefully.",
+        contact_pill2: "Priority support for NUIST Class of 2026 related questions.",
+        contact_btn: "Add WeChat · One-on-One Support"
+      }
+    };
+
+    let currentLang = "zh";
+
+    function applyLanguage(lang) {
+      const dict = i18n[lang] || i18n.zh;
+      currentLang = lang;
+
+      document.querySelectorAll("[data-i18n]").forEach(el => {
+        const key = el.dataset.i18n;
+        if (dict[key]) {
+          el.textContent = dict[key];
+        }
+      });
+
+      // 更新 <html lang="">
+      document.documentElement.lang = lang === "zh" ? "zh-CN" : "en";
+
+      // 更新语言按钮状态
+      document.querySelectorAll(".lang-btn").forEach(btn => {
+        btn.classList.toggle("active", btn.dataset.lang === lang);
+      });
+
+      // 同步到 localStorage，供其他页面使用
+      try {
+        localStorage.setItem("lang", lang);
+      } catch (e) {}
+    }
+
+    // 读取上次的语言偏好
+    const savedLang = (function() {
+      try {
+        return localStorage.getItem("lang") || "zh";
+      } catch (e) {
+        return "zh";
+      }
+    })();
+
+    applyLanguage(savedLang);
+
+    // 绑定语言切换按钮
+    document.querySelectorAll(".lang-btn").forEach(btn => {
+      btn.addEventListener("click", () => {
+        const lang = btn.dataset.lang;
+        applyLanguage(lang);
+      });
+    });
+
+    // ===== 卡片进入动效 =====
     const observer = new IntersectionObserver(
-      (entries) => {
-        entries.forEach((entry) => {
+      entries => {
+        entries.forEach(entry => {
           if (entry.isIntersecting) entry.target.classList.add("visible");
         });
       },
       { threshold: 0.18 }
     );
-
     document.querySelectorAll(".card, .contact").forEach(el => observer.observe(el));
 
-    // 卡片光效
+    // ===== 卡片光效 =====
     document.querySelectorAll(".card").forEach(card => {
       card.addEventListener("mousemove", e => {
         const rect = card.getBoundingClientRect();
         card.style.setProperty("--x", e.clientX - rect.left + "px");
         card.style.setProperty("--y", e.clientY - rect.top + "px");
-      });
-    });
-
-    // 语言切换功能（UI 占位）
-    document.querySelectorAll(".lang-btn").forEach(btn => {
-      btn.addEventListener("click", () => {
-        document.querySelectorAll(".lang-btn").forEach(b => b.classList.remove("active"));
-        btn.classList.add("active");
       });
     });
   </script>
