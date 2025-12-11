@@ -27,9 +27,7 @@
       padding: 0;
     }
 
-    html {
-      scroll-behavior: smooth;
-    }
+    html { scroll-behavior: smooth; }
 
     body {
       font-family: "Inter", -apple-system, BlinkMacSystemFont, "SF Pro Display", sans-serif;
@@ -37,12 +35,6 @@
       color: var(--text);
       min-height: 100vh;
       overflow-x: hidden;
-    }
-
-    /* ===== A 方案：统一覆盖 <a> 默认样式 ===== */
-    a {
-      color: inherit !important;
-      text-decoration: none !important;
     }
 
     .page {
@@ -87,7 +79,7 @@
       height: 8px;
       border-radius: 999px;
       background: #4ade80;
-      box-shadow: 0 0 10px rgba(74, 222, 128, 0.9);
+      box-shadow: 0 0 10px rgba(74,222,128,0.9);
     }
 
     .nav-right {
@@ -96,14 +88,39 @@
       gap: 6px;
     }
 
+    /* ===== 导航 pill（方案B） ===== */
+    .nav-pill {
+      padding: 6px 12px;
+      border-radius: 999px;
+      background: transparent;
+      border: 1px solid transparent;
+      font-size: 12px;
+      color: var(--sub) !important;
+      text-decoration: none;
+      transition: background .2s ease, border-color .2s ease, color .2s ease;
+    }
+
+    .nav-pill:hover {
+      background: rgba(255,255,255,0.08);
+      border-color: rgba(255,255,255,0.18);
+      color: var(--text) !important;
+    }
+
+    .nav-pill.primary {
+      background: #ffffff;
+      color: #000 !important;
+      border-color: transparent;
+    }
+
+    /* ===== 语言选择 ===== */
     .lang-switch {
       display: inline-flex;
       align-items: center;
       gap: 4px;
       padding: 4px;
       border-radius: 999px;
-      background: rgba(255, 255, 255, 0.06);
-      border: 1px solid rgba(255, 255, 255, 0.1);
+      background: rgba(255,255,255,0.06);
+      border: 1px solid rgba(255,255,255,0.1);
       margin-left: 6px;
     }
 
@@ -122,7 +139,7 @@
       background: transparent;
       color: var(--sub);
       cursor: pointer;
-      transition: background 0.18s ease, color 0.18s ease;
+      transition: background .18s ease, color .18s ease;
     }
 
     .lang-btn.active {
@@ -130,32 +147,8 @@
       color: #000;
     }
 
-    .nav-pill {
-      padding: 6px 12px;
-      border-radius: 999px;
-      background: transparent;
-      border: 1px solid transparent;
-      font-size: 12px;
-      color: var(--sub);
-      transition: background 0.2s ease, border-color 0.2s ease, color 0.2s ease;
-    }
-
-    .nav-pill:hover {
-      background: rgba(255, 255, 255, 0.08);
-      border-color: rgba(255, 255, 255, 0.18);
-      color: var(--text);
-    }
-
-    .nav-pill.primary {
-      background: #ffffff;
-      color: #000;
-      border-color: transparent;
-    }
-
     /* ===== Hero ===== */
-    .hero-wrap {
-      padding-top: 26px;
-    }
+    .hero-wrap { padding-top: 26px; }
 
     .hero {
       text-align: center;
@@ -184,20 +177,20 @@
       margin-bottom: 22px;
     }
 
-    /* ===== 卡片网格 ===== */
+    /* ===== 卡片区域 ===== */
     .grid {
       display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+      grid-template-columns: repeat(auto-fit, minmax(260px,1fr));
       gap: 26px;
     }
 
     .card {
-      background: linear-gradient(145deg, rgba(255, 255, 255, 0.12), rgba(255, 255, 255, 0.02));
+      background: linear-gradient(145deg, rgba(255,255,255,0.12), rgba(255,255,255,0.02));
       border-radius: var(--radius);
       padding: 28px 24px 34px;
       backdrop-filter: var(--blur);
       -webkit-backdrop-filter: var(--blur);
-      border: 1px solid rgba(255, 255, 255, 0.08);
+      border: 1px solid rgba(255,255,255,0.08);
       min-height: 210px;
       cursor: pointer;
       position: relative;
@@ -206,22 +199,18 @@
       opacity: 0;
     }
 
-    .card.visible {
-      animation: fadeUp 0.9s ease forwards;
-    }
+    .card.visible { animation: fadeUp .9s ease forwards; }
 
     .card::after {
       content: "";
       position: absolute;
       inset: 0;
-      background: radial-gradient(420px circle at var(--x, 50%) var(--y, 50%), rgba(255, 255, 255, 0.18), transparent 45%);
+      background: radial-gradient(420px circle at var(--x, 50%) var(--y, 50%), rgba(255,255,255,0.18), transparent 45%);
       opacity: 0;
-      transition: opacity 0.28s ease;
+      transition: opacity .28s ease;
     }
 
-    .card:hover::after {
-      opacity: 1;
-    }
+    .card:hover::after { opacity: 1; }
 
     .card h3 {
       font-size: 20px;
@@ -235,7 +224,7 @@
       gap: 6px;
       padding: 4px 10px;
       border-radius: 999px;
-      background: rgba(0, 0, 0, 0.18);
+      background: rgba(0,0,0,0.18);
       font-size: 11px;
       color: var(--sub);
       margin-bottom: 10px;
@@ -245,7 +234,7 @@
       width: 6px;
       height: 6px;
       border-radius: 999px;
-      background: rgba(255, 255, 255, 0.7);
+      background: rgba(255,255,255,0.7);
     }
 
     .card p {
@@ -260,14 +249,24 @@
       right: 20px;
       bottom: 18px;
       font-size: 18px;
-      opacity: 0.5;
-      transition: transform 0.3s ease, opacity 0.3s ease;
+      opacity: .5;
+      transition: transform .3s ease, opacity .3s ease;
     }
 
     .card:hover .arrow {
       transform: translateX(6px);
       opacity: 1;
     }
+
+    /* ===== 修复官网卡片为链接时的紫色问题 ===== */
+    a.card,
+    a.card:visited {
+      color: inherit !important;
+      text-decoration: none !important;
+    }
+
+    a.card h3 { color: var(--text) !important; }
+    a.card p { color: var(--sub) !important; }
 
     /* ===== 联系方式 ===== */
     .contact {
@@ -277,9 +276,7 @@
       transform: translateY(40px);
     }
 
-    .contact.visible {
-      animation: fadeUp 1s ease forwards;
-    }
+    .contact.visible { animation: fadeUp 1s ease forwards; }
 
     .contact h2 {
       font-size: 26px;
@@ -319,26 +316,23 @@
       color: #000;
       font-size: 14px;
       text-decoration: none;
-      transition: transform 0.18s ease, box-shadow 0.18s ease;
+      transition: transform .18s ease, box-shadow .18s ease;
     }
 
     .contact .pill-btn:hover {
       transform: translateY(-1px);
-      box-shadow: 0 10px 26px rgba(0, 0, 0, 0.4);
+      box-shadow: 0 10px 26px rgba(0,0,0,0.4);
     }
 
     @keyframes fadeUp {
-      to {
-        opacity: 1;
-        transform: translateY(0);
-      }
+      to { opacity: 1; transform: translateY(0); }
     }
   </style>
 </head>
 
 <body>
 
-  <!-- 顶部导航 -->
+  <!-- ===== 顶部导航 ===== -->
   <div class="nav-shell">
     <nav class="nav">
       <div class="nav-left">
@@ -351,6 +345,7 @@
         <a href="#map" class="nav-pill">校园地图</a>
         <a href="#contact" class="nav-pill primary">联系学长</a>
 
+        <!-- 语言切换 -->
         <div class="lang-switch">
           <span class="lang-globe">🌐</span>
           <button class="lang-btn active" data-lang="zh">中文</button>
@@ -360,7 +355,7 @@
     </nav>
   </div>
 
-  <!-- 主体 -->
+  <!-- ===== 主体 ===== -->
   <main class="page">
 
     <div class="hero-wrap">
@@ -371,7 +366,7 @@
       </section>
     </div>
 
-    <!-- 功能入口卡片 -->
+    <!-- ===== 功能卡片 ===== -->
     <section class="grid" id="cards">
 
       <article class="card">
@@ -395,6 +390,7 @@
         <span class="arrow">→</span>
       </article>
 
+      <!-- 校园官网入口（已修复紫色下划线） -->
       <a
         class="card"
         id="official"
@@ -411,14 +407,16 @@
 
     </section>
 
-    <!-- 联系方式 -->
+    <!-- ===== 联系方式 ===== -->
     <section class="contact" id="contact">
       <h2>需要一个学长 / 学姐带一程？</h2>
       <p>如果你在准备行李、选择流量卡、安排到校时间时有任何疑问，可以直接加本站负责人微信咨询。</p>
+
       <div class="pill-row">
         <div class="contact-pill">回复慢不用担心，我们会逐条认真看完</div>
         <div class="contact-pill">优先解决 2026 级 NUIST 新生相关问题</div>
       </div>
+
       <a href="#" class="pill-btn">
         <span>＋</span>
         <span>添加微信 · 一对一入学答疑</span>
@@ -427,12 +425,12 @@
 
   </main>
 
-  <!-- 脚本 -->
+  <!-- ===== 脚本 ===== -->
   <script>
-    // 滚动动效
+    // 动效：卡片出现
     const observer = new IntersectionObserver(
-      entries => {
-        entries.forEach(entry => {
+      (entries) => {
+        entries.forEach((entry) => {
           if (entry.isIntersecting) entry.target.classList.add("visible");
         });
       },
@@ -441,16 +439,16 @@
 
     document.querySelectorAll(".card, .contact").forEach(el => observer.observe(el));
 
-    // 卡片光效
+    // 光效
     document.querySelectorAll(".card").forEach(card => {
       card.addEventListener("mousemove", e => {
         const rect = card.getBoundingClientRect();
-        card.style.setProperty("--x", (e.clientX - rect.left) + "px");
-        card.style.setProperty("--y", (e.clientY - rect.top) + "px");
+        card.style.setProperty("--x", e.clientX - rect.left + "px");
+        card.style.setProperty("--y", e.clientY - rect.top + "px");
       });
     });
 
-    // 语言切换
+    // 语言切换（UI占位）
     document.querySelectorAll(".lang-btn").forEach(btn => {
       btn.addEventListener("click", () => {
         document.querySelectorAll(".lang-btn").forEach(b => b.classList.remove("active"));
@@ -461,3 +459,4 @@
 
 </body>
 </html>
+
