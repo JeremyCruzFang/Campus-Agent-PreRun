@@ -1,0 +1,318 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>添加微信 · NUIST 2026 入学助手</title>
+
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet">
+
+  <style>
+    :root {
+      --bg: #050509;
+      --card: rgba(255, 255, 255, 0.06);
+      --text: #ffffff;
+      --sub: rgba(255, 255, 255, 0.68);
+      --pill: rgba(255, 255, 255, 0.12);
+      --accent: #ffffff;
+      --radius: 26px;
+      --blur: blur(24px);
+    }
+
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+
+    body {
+      font-family: "Inter", -apple-system, BlinkMacSystemFont, "SF Pro Display", sans-serif;
+      background: radial-gradient(circle at top, #171722, #050509 70%);
+      color: var(--text);
+      min-height: 100vh;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      padding: 32px 16px;
+    }
+
+    .shell {
+      max-width: 520px;
+      width: 100%;
+      border-radius: 32px;
+      padding: 28px 24px 26px;
+      background: linear-gradient(145deg, rgba(255,255,255,0.14), rgba(255,255,255,0.03));
+      border: 1px solid rgba(255,255,255,0.08);
+      backdrop-filter: var(--blur);
+      -webkit-backdrop-filter: var(--blur);
+      box-shadow: 0 24px 80px rgba(0,0,0,0.6);
+    }
+
+    .top-row {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      margin-bottom: 18px;
+    }
+
+    .title-block h1 {
+      font-size: 22px;
+      font-weight: 500;
+      letter-spacing: -0.02em;
+      margin-bottom: 4px;
+    }
+
+    .title-block p {
+      font-size: 13px;
+      color: var(--sub);
+    }
+
+    .back-link {
+      font-size: 13px;
+      color: var(--sub);
+      text-decoration: none;
+      padding: 6px 12px;
+      border-radius: 999px;
+      background: rgba(0,0,0,0.28);
+      border: 1px solid rgba(255,255,255,0.1);
+      cursor: pointer;
+    }
+
+    .back-link:hover {
+      background: rgba(255,255,255,0.08);
+    }
+
+    .hint {
+      font-size: 12px;
+      color: var(--sub);
+      margin-bottom: 20px;
+    }
+
+    .options {
+      display: grid;
+      gap: 14px;
+      margin-bottom: 16px;
+    }
+
+    .option-card {
+      border-radius: 24px;
+      padding: 16px 16px 18px;
+      background: rgba(0,0,0,0.25);
+      border: 1px solid rgba(255,255,255,0.12);
+    }
+
+    .option-head {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      margin-bottom: 8px;
+    }
+
+    .option-title {
+      font-size: 15px;
+      font-weight: 500;
+    }
+
+    .chip {
+      font-size: 11px;
+      padding: 3px 8px;
+      border-radius: 999px;
+      background: rgba(255,255,255,0.1);
+      color: var(--sub);
+    }
+
+    .option-text {
+      font-size: 13px;
+      color: var(--sub);
+      margin-bottom: 12px;
+    }
+
+    .option-btn {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      padding: 8px 14px;
+      font-size: 13px;
+      border-radius: 999px;
+      border: none;
+      cursor: pointer;
+      background: rgba(255,255,255,0.9);
+      color: #000;
+      transition: transform .15s ease, box-shadow .15s ease, background .15s ease;
+    }
+
+    .option-btn.secondary {
+      background: rgba(255,255,255,0.1);
+      color: var(--sub);
+    }
+
+    .option-btn:hover {
+      transform: translateY(-1px);
+      box-shadow: 0 10px 26px rgba(0,0,0,0.35);
+    }
+
+    .option-btn.secondary:hover {
+      background: rgba(255,255,255,0.16);
+      color: #fff;
+    }
+
+    .pc-panel {
+      margin-top: 10px;
+      padding: 10px 12px;
+      border-radius: 18px;
+      background: rgba(0,0,0,0.35);
+      border: 1px dashed rgba(255,255,255,0.2);
+      font-size: 13px;
+      color: var(--sub);
+      display: none;
+    }
+
+    .pc-panel strong {
+      font-size: 16px;
+      color: #ffffff;
+      letter-spacing: 0.04em;
+    }
+
+    .wechat-id-pill {
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      border-radius: 999px;
+      padding: 6px 10px;
+      background: rgba(255,255,255,0.1);
+      margin-top: 6px;
+      font-size: 12px;
+      color: var(--sub);
+    }
+
+    .wechat-dot {
+      width: 6px;
+      height: 6px;
+      border-radius: 999px;
+      background: #22c55e;
+    }
+
+    .foot-tip {
+      font-size: 11px;
+      color: var(--sub);
+      margin-top: 8px;
+      text-align: right;
+    }
+
+    @media (max-width: 480px) {
+      .shell {
+        padding-inline: 18px;
+        border-radius: 24px;
+      }
+
+      .top-row {
+        flex-direction: column;
+        align-items: flex-start;
+        gap: 8px;
+      }
+
+      .back-link {
+        align-self: flex-end;
+      }
+    }
+
+    @keyframes fadeUp {
+      to {
+        opacity: 1;
+        transform: translateY(0);
+      }
+    }
+  </style>
+</head>
+
+<body>
+  <div class="shell">
+    <div class="top-row">
+      <div class="title-block">
+        <h1>添加微信</h1>
+        <p>选择你现在使用的设备，我们帮你尽量减轻操作步骤。</p>
+      </div>
+      <a href="index.html" class="back-link">← 返回首页</a>
+    </div>
+
+    <p class="hint">微信号统一为：<strong>bomarte88</strong></p>
+
+    <div class="options">
+      <!-- 手机端 -->
+      <div class="option-card">
+        <div class="option-head">
+          <div class="option-title">我现在在手机上</div>
+          <span class="chip">推荐</span>
+        </div>
+        <p class="option-text">
+          我们会尝试帮你复制微信号，并唤起微信 App。若未能自动跳转，你只需要切到微信，粘贴并搜索即可。
+        </p>
+        <button class="option-btn" id="btn-mobile">复制微信号并尝试打开微信</button>
+      </div>
+
+      <!-- 电脑端 -->
+      <div class="option-card">
+        <div class="option-head">
+          <div class="option-title">我现在在电脑上</div>
+        </div>
+        <p class="option-text">
+          会在下方显示微信号，方便你拿起手机，在“添加朋友”中手动输入或复制。
+        </p>
+        <button class="option-btn secondary" id="btn-pc">显示微信号</button>
+
+        <div class="pc-panel" id="pc-panel">
+          <div>微信号：</div>
+          <div class="wechat-id-pill">
+            <span class="wechat-dot"></span>
+            <span id="wechat-id-text">bomarte88</span>
+          </div>
+          <div style="margin-top:8px;">
+            建议在手机微信中：<br>
+            「添加朋友」→「微信号/手机号」→ 输入或粘贴以上微信号。
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="foot-tip">如有任何问题，你也可以回到首页，通过其他方式联系到我。</div>
+  </div>
+
+  <script>
+    const WECHAT_ID = "bomarte88";
+
+    const btnMobile = document.getElementById("btn-mobile");
+    const btnPc = document.getElementById("btn-pc");
+    const pcPanel = document.getElementById("pc-panel");
+
+    // 手机端：复制微信号并尝试唤起微信
+    btnMobile.addEventListener("click", async () => {
+      let copied = false;
+
+      if (navigator.clipboard && navigator.clipboard.writeText) {
+        try {
+          await navigator.clipboard.writeText(WECHAT_ID);
+          copied = true;
+        } catch (e) {
+          copied = false;
+        }
+      }
+
+      if (copied) {
+        alert("已复制微信号： " + WECHAT_ID + "\\n若未能自动打开微信，请手动切换到微信，在添加朋友处粘贴。");
+      } else {
+        alert("请手动记下微信号： " + WECHAT_ID + "\\n当前浏览器不支持自动复制。");
+      }
+
+      // 尝试拉起微信（不同系统与浏览器兼容性不同，可能无效）
+      try {
+        window.location.href = "weixin://";
+      } catch (e) {
+        // 静默失败即可
+      }
+    });
+
+    // 电脑端：展示微信号面板
+    btnPc.addEventListener("click", () => {
+      pcPanel.style.display = "block";
+    });
+  </script>
+</body>
+</html>
