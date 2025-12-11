@@ -21,11 +21,7 @@
       --blur: blur(24px);
     }
 
-    * {
-      box-sizing: border-box;
-      margin: 0;
-      padding: 0;
-    }
+    * { box-sizing: border-box; margin: 0; padding: 0; }
 
     html { scroll-behavior: smooth; }
 
@@ -88,7 +84,6 @@
       gap: 6px;
     }
 
-    /* ===== 导航 pill（方案B） ===== */
     .nav-pill {
       padding: 6px 12px;
       border-radius: 999px;
@@ -177,7 +172,7 @@
       margin-bottom: 22px;
     }
 
-    /* ===== 卡片区域 ===== */
+    /* ===== 卡片网格 ===== */
     .grid {
       display: grid;
       grid-template-columns: repeat(auto-fit, minmax(260px,1fr));
@@ -197,6 +192,9 @@
       overflow: hidden;
       transform: translateY(40px);
       opacity: 0;
+      display: block;
+      color: inherit;
+      text-decoration: none;
     }
 
     .card.visible { animation: fadeUp .9s ease forwards; }
@@ -258,9 +256,8 @@
       opacity: 1;
     }
 
-    /* ===== 修复官网卡片为链接时的紫色问题 ===== */
-    a.card,
-    a.card:visited {
+    /* 修复 a.card 紫色链接问题 */
+    a.card, a.card:visited {
       color: inherit !important;
       text-decoration: none !important;
     }
@@ -306,7 +303,7 @@
       color: var(--sub);
     }
 
-    .contact .pill-btn {
+    .pill-btn {
       display: inline-flex;
       align-items: center;
       gap: 10px;
@@ -319,7 +316,7 @@
       transition: transform .18s ease, box-shadow .18s ease;
     }
 
-    .contact .pill-btn:hover {
+    .pill-btn:hover {
       transform: translateY(-1px);
       box-shadow: 0 10px 26px rgba(0,0,0,0.4);
     }
@@ -366,9 +363,10 @@
       </section>
     </div>
 
-    <!-- ===== 功能卡片 ===== -->
+    <!-- ===== 功能卡片区 ===== -->
     <section class="grid" id="cards">
 
+      <!-- 校园流量卡 -->
       <article class="card">
         <div class="card-tag"><span class="card-tag-dot"></span> 报到前就能确定</div>
         <h3>校园流量卡</h3>
@@ -376,6 +374,7 @@
         <span class="arrow">→</span>
       </article>
 
+      <!-- 寝室用具 -->
       <article class="card">
         <div class="card-tag"><span class="card-tag-dot"></span> 一次选齐，不踩雷</div>
         <h3>寝室用具</h3>
@@ -383,21 +382,27 @@
         <span class="arrow">→</span>
       </article>
 
-      <article class="card" id="map">
+      <!-- 校园地图（改成 <a>） -->
+      <a 
+        class="card"
+        id="map"
+        href="https://map.nuist.edu.cn/"
+        target="_blank"
+        rel="noopener noreferrer"
+      >
         <div class="card-tag"><span class="card-tag-dot"></span> 第一天下楼也不迷路</div>
         <h3>校园地图</h3>
         <p>教学楼、宿舍区、食堂、校医院、快递点与公交站，一张图把你常去的地方先认识一遍。</p>
         <span class="arrow">→</span>
-      </article>
+      </a>
 
-      <!-- 校园官网入口（已修复紫色下划线） -->
-      <a
+      <!-- 校园官网入口 -->
+      <a 
         class="card"
         id="official"
         href="https://www.nuist.edu.cn"
         target="_blank"
         rel="noopener noreferrer"
-        style="display:block;"
       >
         <div class="card-tag"><span class="card-tag-dot"></span> 官方信息直达</div>
         <h3>校园官网入口</h3>
@@ -425,9 +430,9 @@
 
   </main>
 
-  <!-- ===== 脚本 ===== -->
+  <!-- ===== JS 动效 ===== -->
   <script>
-    // 动效：卡片出现
+    // 卡片进入动效
     const observer = new IntersectionObserver(
       (entries) => {
         entries.forEach((entry) => {
@@ -439,7 +444,7 @@
 
     document.querySelectorAll(".card, .contact").forEach(el => observer.observe(el));
 
-    // 光效
+    // 卡片光效
     document.querySelectorAll(".card").forEach(card => {
       card.addEventListener("mousemove", e => {
         const rect = card.getBoundingClientRect();
@@ -448,7 +453,7 @@
       });
     });
 
-    // 语言切换（UI占位）
+    // 语言切换功能（UI 占位）
     document.querySelectorAll(".lang-btn").forEach(btn => {
       btn.addEventListener("click", () => {
         document.querySelectorAll(".lang-btn").forEach(b => b.classList.remove("active"));
@@ -459,4 +464,3 @@
 
 </body>
 </html>
-
