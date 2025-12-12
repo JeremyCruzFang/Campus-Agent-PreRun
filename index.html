@@ -508,6 +508,163 @@
       }
     }
 
+    /* === 模块 1：新生必看（Apple 分段结构） === */
+    .section {
+      margin-top: 76px;
+      padding-top: 8px;
+    }
+
+    .section-head {
+      max-width: 900px;
+      margin: 0 auto 18px;
+      text-align: center;
+    }
+
+    .kicker {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      padding: 6px 12px;
+      border-radius: var(--radius-pill);
+      background: rgba(255,255,255,0.08);
+      border: 1px solid rgba(255,255,255,0.14);
+      color: rgba(255,255,255,0.68);
+      font-size: 12px;
+      letter-spacing: 0.02em;
+      margin-bottom: 14px;
+      box-shadow: 0 10px 30px rgba(0,0,0,0.55);
+    }
+
+    .kicker-dot {
+      width: 7px;
+      height: 7px;
+      border-radius: 999px;
+      background: rgba(255,255,255,0.85);
+      box-shadow: 0 0 0 4px rgba(255,255,255,0.12);
+      opacity: 0.9;
+    }
+
+    .section-title {
+      font-size: clamp(22px, 3.2vw, 34px);
+      font-weight: 600;
+      letter-spacing: -0.02em;
+      line-height: 1.15;
+      margin-bottom: 10px;
+    }
+
+    
+
+    .section-divider {
+      width: min(760px, 92%);
+      height: 1px;
+      margin: 18px auto 0;
+      background: linear-gradient(
+        to right,
+        rgba(255, 255, 255, 0),
+        rgba(255, 255, 255, 0.18),
+        rgba(255, 255, 255, 0)
+      );
+      opacity: 0.8;
+    }
+
+    .info-grid {
+      margin-top: 28px;
+      display: grid;
+      grid-template-columns: repeat(12, 1fr);
+      gap: 18px;
+    }
+
+    .info-card {
+      grid-column: span 6;
+      border-radius: 24px;
+      padding: 18px 18px 20px;
+      background: rgba(255,255,255,0.06);
+      border: 1px solid rgba(255,255,255,0.12);
+      backdrop-filter: blur(20px);
+      -webkit-backdrop-filter: blur(20px);
+      box-shadow: 0 16px 45px rgba(0,0,0,0.55);
+      transition: transform 0.35s var(--ease-soft), border-color 0.25s ease-out, background 0.35s var(--ease-soft);
+      text-decoration: none;
+      color: inherit;
+      position: relative;
+      overflow: hidden;
+      min-height: 140px;
+    }
+
+    .info-card:hover {
+      transform: translateY(-4px);
+      border-color: rgba(255,255,255,0.22);
+      background: rgba(255,255,255,0.085);
+    }
+
+    .info-card:active {
+      transform: translateY(-1px) scale(0.99);
+      transition-duration: 0.12s;
+    }
+
+    .info-top {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 12px;
+      margin-bottom: 10px;
+    }
+
+    .info-title {
+      font-weight: 600;
+      letter-spacing: -0.01em;
+      font-size: 16px;
+      line-height: 1.25;
+    }
+
+    .info-tag {
+      padding: 6px 10px;
+      border-radius: var(--radius-pill);
+      font-size: 11px;
+      color: rgba(255,255,255,0.66);
+      background: rgba(0,0,0,0.22);
+      border: 1px solid rgba(255,255,255,0.12);
+      white-space: nowrap;
+    }
+
+    .info-desc {
+      font-size: 14px;
+      color: var(--sub);
+      line-height: 1.6;
+      padding-right: 14px;
+    }
+
+    .info-link {
+      margin-top: 14px;
+      font-size: 12px;
+      color: rgba(255,255,255,0.72);
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      opacity: 0.9;
+    }
+
+    .info-link span {
+      opacity: 0.7;
+      transform: translateX(0);
+      transition: transform 0.35s var(--ease-soft), opacity 0.35s var(--ease-soft);
+    }
+
+    .info-card:hover .info-link span {
+      transform: translateX(6px);
+      opacity: 1;
+    }
+
+    @media (max-width: 860px) {
+      .info-card { grid-column: span 12; }
+    }
+
+    @media (max-width: 480px) {
+      .section { margin-top: 64px; }
+      .info-grid { gap: 14px; }
+      .info-card { min-height: 128px; }
+    }
+
     /* === 底部说明 === */
     .contact {
       margin: 96px auto 0;
@@ -546,6 +703,154 @@
         font-size: 14px;
       }
     }
+  
+
+    /* === Essentials（方案A）：轻量信息块覆盖（不抢主入口卡的权重） === */
+    .info-grid.essentials {
+      margin-top: 24px;
+      gap: 16px;
+    }
+
+    .info-grid.essentials .info-card {
+      min-height: 124px;
+      padding: 18px 18px 18px;
+      border-radius: 22px;
+      background: rgba(255, 255, 255, 0.045);
+      border: 1px solid rgba(255, 255, 255, 0.11);
+      backdrop-filter: blur(14px);
+      -webkit-backdrop-filter: blur(14px);
+      box-shadow: 0 10px 28px rgba(0, 0, 0, 0.45);
+      transform: translateY(0);
+    }
+
+    .info-grid.essentials .info-card:hover {
+      transform: translateY(-3px);
+      border-color: rgba(255, 255, 255, 0.18);
+      background: rgba(255, 255, 255, 0.06);
+      box-shadow: 0 14px 36px rgba(0, 0, 0, 0.55);
+    }
+
+    .info-grid.essentials .info-title {
+      font-size: 16px;
+      letter-spacing: -0.01em;
+    }
+
+    .info-grid.essentials .info-desc {
+      font-size: 14px;
+      line-height: 1.62;
+      color: rgba(255, 255, 255, 0.74);
+      padding-right: 10px;
+    }
+
+    .info-grid.essentials .info-link {
+      margin-top: 12px;
+      font-size: 12px;
+      color: rgba(255, 255, 255, 0.62);
+      opacity: 0.95;
+    }
+
+    .info-grid.essentials .info-tag {
+      background: rgba(0, 0, 0, 0.18);
+      border-color: rgba(255, 255, 255, 0.11);
+      color: rgba(255, 255, 255, 0.62);
+    }
+
+    @media (max-width: 480px) {
+      .info-grid.essentials .info-card {
+        min-height: 118px;
+        padding: 16px 16px 16px;
+      }
+    }
+
+    /* === Essentials 轻量化（方案 A：说明区降权） === */
+    .info-grid.essentials {
+      gap: 16px;
+    }
+
+    .info-grid.essentials .info-card {
+      background: rgba(255, 255, 255, 0.045);
+      border: 1px solid rgba(255, 255, 255, 0.10);
+      box-shadow: 0 10px 28px rgba(0, 0, 0, 0.45);
+      backdrop-filter: blur(14px);
+      -webkit-backdrop-filter: blur(14px);
+      min-height: 124px;
+    }
+
+    .info-grid.essentials .info-card:hover {
+      transform: translateY(-2px);
+      background: rgba(255, 255, 255, 0.06);
+      border-color: rgba(255, 255, 255, 0.16);
+    }
+
+    .info-grid.essentials .info-card:active {
+      transform: translateY(-1px) scale(0.995);
+    }
+
+    .info-grid.essentials .info-desc {
+      color: rgba(255, 255, 255, 0.66);
+    }
+
+    .info-grid.essentials .info-tag {
+      background: rgba(255, 255, 255, 0.05);
+      border-color: rgba(255, 255, 255, 0.10);
+      color: rgba(255, 255, 255, 0.62);
+    }
+
+    .info-grid.essentials .info-link {
+      margin-top: 12px;
+      color: rgba(255, 255, 255, 0.55);
+      opacity: 1;
+    }
+
+    .info-grid.essentials .info-link span:last-child {
+      opacity: 0.7;
+    }
+
+    @media (max-width: 640px) {
+      .info-grid.essentials {
+        gap: 14px;
+      }
+      .info-grid.essentials .info-card {
+        box-shadow: 0 8px 22px rgba(0, 0, 0, 0.42);
+        min-height: 118px;
+      }
+    }
+
+    /* === Essentials icons（SF Symbols 风格，轻量） === */
+    .info-leading {
+      display: inline-flex;
+      align-items: center;
+      gap: 10px;
+      min-width: 0;
+    }
+
+    .info-icon {
+      width: 28px;
+      height: 28px;
+      border-radius: 10px;
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      background: rgba(255, 255, 255, 0.055);
+      border: 1px solid rgba(255, 255, 255, 0.10);
+      box-shadow: 0 10px 22px rgba(0, 0, 0, 0.35);
+      flex: 0 0 auto;
+    }
+
+    .info-icon svg {
+      width: 16px;
+      height: 16px;
+      opacity: 0.86;
+      color: rgba(255, 255, 255, 0.80);
+    }
+
+    .info-leading .info-title {
+      white-space: nowrap;
+      overflow: hidden;
+      text-overflow: ellipsis;
+      min-width: 0;
+    }
+
   </style>
 </head>
 
@@ -622,6 +927,91 @@
         <span class="arrow">→</span>
       </a>
     </div>
+
+    <!-- 模块 1：新生必看 -->
+    <section class="section" aria-label="Freshman essentials">
+      <div class="section-head">
+        <div class="kicker"><span class="kicker-dot"></span><span data-i18n="m1_kicker">新生必看</span></div>
+        <div class="section-title" data-i18n="m1_title">开学前，把关键事情一次搞清楚</div>
+        
+        <div class="section-divider" aria-hidden="true"></div>
+      </div>
+
+      <div class="info-grid essentials">
+        <a class="info-card" href="#" role="button" aria-label="Check-in flow">
+          <div class="info-top">
+            <div class="info-leading">
+              <span class="info-icon" aria-hidden="true">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
+                  <path d="M9 11l2 2 4-4"/>
+                  <path d="M12 22c5.5 0 10-4.5 10-10S17.5 2 12 2 2 6.5 2 12s4.5 10 10 10z"/>
+                </svg>
+              </span>
+              <div class="info-title" data-i18n="m1_a_title">报到全流程</div>
+            </div>
+            <div class="info-tag" data-i18n="m1_a_tag">到校当天</div>
+          </div>
+          <div class="info-desc" data-i18n="m1_a_desc">从下车、领资料到进宿舍：按真实顺序带你走一遍。</div>
+          <div class="info-link"><span data-i18n="m1_more">查看详情</span><span>→</span></div>
+        </a>
+
+        <a class="info-card" href="#" role="button" aria-label="Packing checklist">
+          <div class="info-top">
+            <div class="info-leading">
+              <span class="info-icon" aria-hidden="true">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
+                  <path d="M8 6h13"/>
+                  <path d="M8 12h13"/>
+                  <path d="M8 18h13"/>
+                  <path d="M3 6h.01"/>
+                  <path d="M3 12h.01"/>
+                  <path d="M3 18h.01"/>
+                </svg>
+              </span>
+              <div class="info-title" data-i18n="m1_b_title">行前准备清单</div>
+            </div>
+            <div class="info-tag" data-i18n="m1_b_tag">打包前</div>
+          </div>
+          <div class="info-desc" data-i18n="m1_b_desc">哪些必须带、哪些建议到校再买：避免行李冗余与踩坑。</div>
+          <div class="info-link"><span data-i18n="m1_more">查看详情</span><span>→</span></div>
+        </a>
+
+        <a class="info-card" href="#" role="button" aria-label="Campus systems hub">
+          <div class="info-top">
+            <div class="info-leading">
+              <span class="info-icon" aria-hidden="true">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
+                  <path d="M12 21s-6-4.4-6-10a6 6 0 1 1 12 0c0 5.6-6 10-6 10z"/>
+                  <path d="M12 11.5a2 2 0 1 0 0-4 2 2 0 0 0 0 4z"/>
+                </svg>
+              </span>
+              <div class="info-title" data-i18n="m1_c_title">校内系统导航</div>
+            </div>
+            <div class="info-tag" data-i18n="m1_c_tag">日常必用</div>
+          </div>
+          <div class="info-desc" data-i18n="m1_c_desc">教务、校园卡、网络、缴费等入口合集（后续持续更新）。</div>
+          <div class="info-link"><span data-i18n="m1_more">查看详情</span><span>→</span></div>
+        </a>
+
+        <a class="info-card" href="#" role="button" aria-label="Pitfall guide">
+          <div class="info-top">
+            <div class="info-leading">
+              <span class="info-icon" aria-hidden="true">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
+                  <path d="M12 2l8 4v6c0 5-3.5 9.4-8 10-4.5-.6-8-5-8-10V6l8-4z"/>
+                  <path d="M12 8v5"/>
+                  <path d="M12 17h.01"/>
+                </svg>
+              </span>
+              <div class="info-title" data-i18n="m1_d_title">新生避坑提示</div>
+            </div>
+            <div class="info-tag" data-i18n="m1_d_tag">先看再买</div>
+          </div>
+          <div class="info-desc" data-i18n="m1_d_desc">高频误区与底线建议：帮你避免不必要的花钱和折腾。</div>
+          <div class="info-link"><span data-i18n="m1_more">查看详情</span><span>→</span></div>
+        </a>
+      </div>
+    </section>
 
     <!-- 底部联系方式 -->
     <div class="contact">
@@ -704,6 +1094,27 @@
         card_contact: "本站负责人联系方式",
         card_contact_p: "添加学长微信：获取入学帮助 & 即时答疑。",
 
+        m1_kicker: "新生必看",
+        m1_title: "开学前，把关键事情一次搞清楚",
+        m1_desc: "报到流程、系统入口、生活准备与常见误区——先看一遍，心里就有底。",
+        m1_more: "查看详情",
+
+        m1_a_title: "报到全流程",
+        m1_a_tag: "到校当天",
+        m1_a_desc: "从下车、领资料到进宿舍：按真实顺序带你走一遍。",
+
+        m1_b_title: "行前准备清单",
+        m1_b_tag: "打包前",
+        m1_b_desc: "哪些必须带、哪些建议到校再买：避免行李冗余与踩坑。",
+
+        m1_c_title: "校内系统导航",
+        m1_c_tag: "日常必用",
+        m1_c_desc: "教务、校园卡、网络、缴费等入口合集（后续持续更新）。",
+
+        m1_d_title: "新生避坑提示",
+        m1_d_tag: "先看再买",
+        m1_d_desc: "高频误区与底线建议：帮你避免不必要的花钱和折腾。",
+
         contact_desc:
           "如果你对内容有任何建议，也欢迎通过微信联系我。本站将在未来持续完善，以帮助更多的新生。"
       },
@@ -732,6 +1143,23 @@
 
         card_contact: "Contact the Author",
         card_contact_p: "Add my WeChat for assistance and instant Q&A.",
+
+        m1_kicker: "Essentials",
+        m1_title: "Before you arrive, get the key things right",
+        m1_desc: "Check-in steps, packing checklist, common pitfalls, and campus system entry points—organized clearly for you.",
+        m1_more: "Learn more",
+        m1_a_title: "Check-in Flow",
+        m1_a_tag: "Arrival day",
+        m1_a_desc: "From getting off the bus to your dorm: key steps, FAQs, and timing tips.",
+        m1_b_title: "Packing List",
+        m1_b_tag: "Before you pack",
+        m1_b_desc: "What to bring, what to skip, and what you can buy after arrival.",
+        m1_c_title: "Campus Systems",
+        m1_c_tag: "Daily use",
+        m1_c_desc: "A curated hub of academic, campus card, and network entry points (updates coming).",
+        m1_d_title: "Pitfall Guide",
+        m1_d_tag: "Read first",
+        m1_d_desc: "What tends to mislead? What purchases can wait? Clear baseline advice.",
 
         contact_desc:
           "If you have suggestions, feel free to reach out. This site will keep improving for future freshmen."
