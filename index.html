@@ -2,48 +2,29 @@
 <html lang="zh-CN">
 <head>
   <meta charset="UTF-8" />
-  <meta
-    name="viewport"
-    content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no"
-  />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no" />
   <title data-i18n="app_title">NUIST 2026 入学助手</title>
 
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-  <link
-    href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600&display=swap"
-    rel="stylesheet"
-  />
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet" />
 
   <style>
     :root {
       --bg: #050509;
-      --bg-elevated: #0b0b10;
       --text: #ffffff;
       --sub: rgba(255, 255, 255, 0.72);
       --muted: rgba(255, 255, 255, 0.48);
       --radius-lg: 28px;
       --radius-pill: 999px;
-      --border-subtle: rgba(255, 255, 255, 0.12);
-      --border-soft: rgba(255, 255, 255, 0.08);
-      --shadow-soft: 0 18px 60px rgba(0, 0, 0, 0.65);
-      --blur-strong: blur(30px);
       --ease-soft: cubic-bezier(0.25, 0.1, 0.25, 1);
     }
 
-    * {
-      box-sizing: border-box;
-      margin: 0;
-      padding: 0;
-    }
-
-    html {
-      scroll-behavior: smooth;
-    }
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+    html { scroll-behavior: smooth; }
 
     body {
-      font-family: "Inter", -apple-system, BlinkMacSystemFont, "SF Pro Text",
-        system-ui, sans-serif;
+      font-family: "Inter", -apple-system, BlinkMacSystemFont, system-ui, sans-serif;
       background:
         radial-gradient(circle at top, #24243a, transparent 60%),
         radial-gradient(circle at 80% 10%, #1e2638, transparent 55%),
@@ -55,7 +36,6 @@
       text-rendering: optimizeLegibility;
     }
 
-    /* === 背景光效（桌面强，移动端弱光：M1） === */
     .bg-glow {
       position: fixed;
       inset: 0;
@@ -69,12 +49,8 @@
     }
 
     @keyframes glowDrift {
-      0% {
-        transform: translate3d(0, 0, 0);
-      }
-      100% {
-        transform: translate3d(-40px, 24px, 0);
-      }
+      0% { transform: translate3d(0, 0, 0); }
+      100% { transform: translate3d(-40px, 24px, 0); }
     }
 
     @media (max-width: 640px) {
@@ -87,7 +63,6 @@
       }
     }
 
-    /* === 主容器 === */
     .page {
       max-width: 1120px;
       margin: 0 auto;
@@ -97,12 +72,9 @@
     }
 
     @media (max-width: 768px) {
-      .page {
-        padding: 72px 16px 88px;
-      }
+      .page { padding: 72px 16px 88px; }
     }
 
-    /* === 导航栏（悬浮玻璃 + Apple 式缩放） === */
     .nav-shell {
       position: sticky;
       top: 0;
@@ -110,12 +82,7 @@
       padding: 10px 0 0;
       backdrop-filter: blur(28px);
       -webkit-backdrop-filter: blur(28px);
-      background: linear-gradient(
-        to bottom,
-        rgba(5, 5, 9, 0.96),
-        rgba(5, 5, 12, 0.85),
-        transparent
-      );
+      background: linear-gradient(to bottom, rgba(5, 5, 9, 0.96), rgba(5, 5, 12, 0.85), transparent);
       transition: background 0.35s var(--ease-soft);
     }
 
@@ -127,8 +94,7 @@
       align-items: center;
       justify-content: space-between;
       border-radius: var(--radius-pill);
-      background:
-        radial-gradient(circle at top left, rgba(255, 255, 255, 0.18), rgba(255, 255, 255, 0.03));
+      background: radial-gradient(circle at top left, rgba(255, 255, 255, 0.18), rgba(255, 255, 255, 0.03));
       border: 1px solid rgba(255, 255, 255, 0.16);
       box-shadow:
         0 18px 50px rgba(0, 0, 0, 0.85),
@@ -186,10 +152,7 @@
       display: inline-flex;
       align-items: center;
       gap: 6px;
-      transition:
-        background 0.2s ease-out,
-        color 0.2s ease-out,
-        transform 0.12s ease-out;
+      transition: background 0.2s ease-out, color 0.2s ease-out, transform 0.12s ease-out;
     }
 
     .nav-pill::before {
@@ -200,26 +163,13 @@
       background: radial-gradient(circle, rgba(255, 255, 255, 0.9), transparent);
       opacity: 0;
       transform: scale(0.4);
-      transition:
-        opacity 0.2s ease-out,
-        transform 0.2s ease-out;
+      transition: opacity 0.2s ease-out, transform 0.2s ease-out;
     }
 
-    .nav-pill:hover {
-      background: rgba(255, 255, 255, 0.12);
-      color: #ffffff;
-    }
+    .nav-pill:hover { background: rgba(255, 255, 255, 0.12); color: #ffffff; }
+    .nav-pill:hover::before { opacity: 0.7; transform: scale(1); }
+    .nav-pill:active { transform: scale(0.96); }
 
-    .nav-pill:hover::before {
-      opacity: 0.7;
-      transform: scale(1);
-    }
-
-    .nav-pill:active {
-      transform: scale(0.96);
-    }
-
-    /* 语言切换 */
     .lang-switch {
       display: inline-flex;
       align-items: center;
@@ -232,11 +182,17 @@
     }
 
     .lang-globe {
-      font-size: 12px;
-      padding: 3px 6px 3px 5px;
+      width: 18px;
+      height: 18px;
+      margin-left: 4px;
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
       color: var(--muted);
       user-select: none;
     }
+
+    .lang-globe svg { width: 14px; height: 14px; opacity: 0.85; }
 
     .lang-btn {
       border-radius: var(--radius-pill);
@@ -246,25 +202,14 @@
       background: transparent;
       color: var(--muted);
       cursor: pointer;
-      transition:
-        background 0.18s ease-out,
-        color 0.18s ease-out,
-        transform 0.1s ease-out;
+      transition: background 0.18s ease-out, color 0.18s ease-out, transform 0.1s ease-out;
     }
 
-    .lang-btn.active {
-      background: #ffffff;
-      color: #000000;
-    }
-
-    .lang-btn:active {
-      transform: scale(0.95);
-    }
+    .lang-btn.active { background: #ffffff; color: #000000; }
+    .lang-btn:active { transform: scale(0.95); }
 
     @media (max-width: 768px) {
-      .nav {
-        padding-inline: 14px;
-      }
+      .nav { padding-inline: 14px; }
       .nav-left span {
         max-width: 140px;
         overflow: hidden;
@@ -272,21 +217,13 @@
       }
     }
 
-    /* === Hero === */
-    .hero-wrap {
-      padding-top: 30px;
-      position: relative;
-    }
+    .hero-wrap { padding-top: 30px; position: relative; }
 
     .hero-wrap::before {
       content: "";
       position: absolute;
       inset: -80px -120px 40%;
-      background: radial-gradient(
-        ellipse at top,
-        rgba(255, 255, 255, 0.08),
-        transparent 60%
-      );
+      background: radial-gradient(ellipse at top, rgba(255, 255, 255, 0.08), transparent 60%);
       opacity: 0.75;
       pointer-events: none;
       z-index: -1;
@@ -302,14 +239,8 @@
     }
 
     @keyframes heroIn {
-      0% {
-        opacity: 0;
-        transform: translateY(22px) scale(0.99);
-      }
-      100% {
-        opacity: 1;
-        transform: translateY(0) scale(1);
-      }
+      0% { opacity: 0; transform: translateY(22px) scale(0.99); }
+      100% { opacity: 1; transform: translateY(0) scale(1); }
     }
 
     .hero h1 {
@@ -337,131 +268,69 @@
     }
 
     @media (max-width: 480px) {
-      .hero {
-        margin-bottom: 60px;
-      }
-      .hero h1 {
-        font-size: 30px;
-      }
-      .hero p {
-        font-size: 15px;
-      }
-      .hero-sub {
-        font-size: 14px;
-      }
+      .hero { margin-bottom: 60px; }
+      .hero h1 { font-size: 30px; }
+      .hero p { font-size: 15px; }
+      .hero-sub { font-size: 14px; }
     }
 
-    /* === 卡片 Grid === */
     .grid {
       display: grid;
       grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
       gap: 26px;
     }
 
-    @media (max-width: 480px) {
-      .grid {
-        gap: 20px;
-      }
-    }
+    @media (max-width: 480px) { .grid { gap: 20px; } }
 
-    /* === 功能卡片（Apple 风） === */
     .card {
-      background:
-        linear-gradient(140deg, rgba(255, 255, 255, 0.12), rgba(255, 255, 255, 0.02));
+      background: linear-gradient(140deg, rgba(255, 255, 255, 0.12), rgba(255, 255, 255, 0.02));
       border-radius: var(--radius-lg);
       padding: 26px 24px 34px;
       backdrop-filter: blur(26px);
       -webkit-backdrop-filter: blur(26px);
       border: 1px solid rgba(255, 255, 255, 0.12);
-      box-shadow:
-        0 18px 60px rgba(0, 0, 0, 0.72),
-        0 0 0 0.4px rgba(255, 255, 255, 0.12);
+      box-shadow: 0 18px 60px rgba(0, 0, 0, 0.72), 0 0 0 0.4px rgba(255, 255, 255, 0.12);
       cursor: pointer;
       position: relative;
       overflow: hidden;
       opacity: 0;
       transform: translateY(36px) scale(0.99);
-      transition:
-        transform 0.45s var(--ease-soft),
-        box-shadow 0.45s var(--ease-soft),
-        border-color 0.3s ease-out,
-        background 0.4s var(--ease-soft);
+      transition: transform 0.45s var(--ease-soft), box-shadow 0.45s var(--ease-soft), border-color 0.3s ease-out, background 0.4s var(--ease-soft);
       color: inherit;
       text-decoration: none;
       isolation: isolate;
     }
 
-    .card.visible {
-      animation: cardIn 0.9s var(--ease-soft) forwards;
-    }
+    .card.visible { animation: cardIn 0.9s var(--ease-soft) forwards; }
 
     @keyframes cardIn {
-      0% {
-        opacity: 0;
-        transform: translateY(36px) scale(0.98);
-      }
-      100% {
-        opacity: 1;
-        transform: translateY(0) scale(1);
-      }
+      0% { opacity: 0; transform: translateY(36px) scale(0.98); }
+      100% { opacity: 1; transform: translateY(0) scale(1); }
     }
 
     .card::before {
       content: "";
       position: absolute;
       inset: 0;
-      background: radial-gradient(
-        260px circle at var(--x, 40%) var(--y, 30%),
-        rgba(255, 255, 255, 0.22),
-        transparent 55%
-      );
+      background: radial-gradient(260px circle at var(--x, 40%) var(--y, 30%), rgba(255, 255, 255, 0.22), transparent 55%);
       opacity: 0;
       mix-blend-mode: screen;
       transition: opacity 0.4s var(--ease-soft);
       pointer-events: none;
     }
 
-    .card::after {
-      /* 内阴影 + 底部光晕 */
-      content: "";
-      position: absolute;
-      inset: -1px;
-      border-radius: inherit;
-      box-shadow:
-        inset 0 0 0 0.4px rgba(255, 255, 255, 0.22),
-        0 32px 80px rgba(0, 0, 0, 0.85);
-      opacity: 0;
-      transition: opacity 0.45s var(--ease-soft);
-      pointer-events: none;
-      z-index: -1;
-    }
-
     .card:hover {
       transform: translateY(-6px) scale(1.015);
-      box-shadow:
-        0 22px 80px rgba(0, 0, 0, 0.9),
-        0 0 0 0.6px rgba(255, 255, 255, 0.18);
+      box-shadow: 0 22px 80px rgba(0, 0, 0, 0.9), 0 0 0 0.6px rgba(255, 255, 255, 0.18);
       border-color: rgba(255, 255, 255, 0.24);
-      background: linear-gradient(
-        145deg,
-        rgba(255, 255, 255, 0.18),
-        rgba(255, 255, 255, 0.05)
-      );
+      background: linear-gradient(145deg, rgba(255, 255, 255, 0.18), rgba(255, 255, 255, 0.05));
     }
 
-    .card:hover::before {
-      opacity: 1;
-    }
-
-    .card:hover::after {
-      opacity: 1;
-    }
+    .card:hover::before { opacity: 1; }
 
     .card:active {
       transform: translateY(-1px) scale(0.99);
-      box-shadow:
-        0 14px 40px rgba(0, 0, 0, 0.8),
-        0 0 0 0.6px rgba(255, 255, 255, 0.18);
+      box-shadow: 0 14px 40px rgba(0, 0, 0, 0.8), 0 0 0 0.6px rgba(255, 255, 255, 0.18);
       transition-duration: 0.12s;
     }
 
@@ -488,31 +357,18 @@
       transition: transform 0.35s var(--ease-soft), opacity 0.35s var(--ease-soft);
     }
 
-    .card:hover .arrow {
-      transform: translateX(7px);
-      opacity: 1;
-    }
+    .card:hover .arrow { transform: translateX(7px); opacity: 1; }
 
     @media (max-width: 640px) {
       .card {
         padding: 22px 20px 30px;
-        box-shadow:
-          0 14px 40px rgba(0, 0, 0, 0.7),
-          0 0 0 0.4px rgba(255, 255, 255, 0.1);
+        box-shadow: 0 14px 40px rgba(0, 0, 0, 0.7), 0 0 0 0.4px rgba(255, 255, 255, 0.1);
       }
-      .card h3 {
-        font-size: 18px;
-      }
-      .card p {
-        font-size: 14px;
-      }
+      .card h3 { font-size: 18px; }
+      .card p { font-size: 14px; }
     }
 
-    /* === 模块 1：新生必看（Apple 分段结构） === */
-    .section {
-      margin-top: 76px;
-      padding-top: 8px;
-    }
+    .section { margin-top: 76px; padding-top: 8px; }
 
     .section-head {
       max-width: 900px;
@@ -526,21 +382,21 @@
       gap: 8px;
       padding: 6px 12px;
       border-radius: var(--radius-pill);
-      background: rgba(255,255,255,0.08);
-      border: 1px solid rgba(255,255,255,0.14);
-      color: rgba(255,255,255,0.68);
+      background: rgba(255, 255, 255, 0.08);
+      border: 1px solid rgba(255, 255, 255, 0.14);
+      color: rgba(255, 255, 255, 0.68);
       font-size: 12px;
       letter-spacing: 0.02em;
       margin-bottom: 14px;
-      box-shadow: 0 10px 30px rgba(0,0,0,0.55);
+      box-shadow: 0 10px 30px rgba(0, 0, 0, 0.55);
     }
 
     .kicker-dot {
       width: 7px;
       height: 7px;
       border-radius: 999px;
-      background: rgba(255,255,255,0.85);
-      box-shadow: 0 0 0 4px rgba(255,255,255,0.12);
+      background: rgba(255, 255, 255, 0.85);
+      box-shadow: 0 0 0 4px rgba(255, 255, 255, 0.12);
       opacity: 0.9;
     }
 
@@ -552,7 +408,7 @@
       margin-bottom: 10px;
     }
 
-    .section-desc{
+    .section-desc {
       margin: 0 auto 0;
       max-width: 720px;
       font-size: 14px;
@@ -560,20 +416,13 @@
       color: var(--sub);
     }
 
-    .desc-line{display:block;}
-
-    
+    .desc-line { display: block; }
 
     .section-divider {
       width: min(760px, 92%);
       height: 1px;
       margin: 18px auto 0;
-      background: linear-gradient(
-        to right,
-        rgba(255, 255, 255, 0),
-        rgba(255, 255, 255, 0.18),
-        rgba(255, 255, 255, 0)
-      );
+      background: linear-gradient(to right, rgba(255, 255, 255, 0), rgba(255, 255, 255, 0.18), rgba(255, 255, 255, 0));
       opacity: 0.8;
     }
 
@@ -588,11 +437,11 @@
       grid-column: span 6;
       border-radius: 24px;
       padding: 18px 18px 20px;
-      background: rgba(255,255,255,0.06);
-      border: 1px solid rgba(255,255,255,0.12);
+      background: rgba(255, 255, 255, 0.06);
+      border: 1px solid rgba(255, 255, 255, 0.12);
       backdrop-filter: blur(20px);
       -webkit-backdrop-filter: blur(20px);
-      box-shadow: 0 16px 45px rgba(0,0,0,0.55);
+      box-shadow: 0 16px 45px rgba(0, 0, 0, 0.55);
       transition: transform 0.35s var(--ease-soft), border-color 0.25s ease-out, background 0.35s var(--ease-soft);
       text-decoration: none;
       color: inherit;
@@ -603,14 +452,11 @@
 
     .info-card:hover {
       transform: translateY(-4px);
-      border-color: rgba(255,255,255,0.22);
-      background: rgba(255,255,255,0.085);
+      border-color: rgba(255, 255, 255, 0.22);
+      background: rgba(255, 255, 255, 0.085);
     }
 
-    .info-card:active {
-      transform: translateY(-1px) scale(0.99);
-      transition-duration: 0.12s;
-    }
+    .info-card:active { transform: translateY(-1px) scale(0.99); transition-duration: 0.12s; }
 
     .info-top {
       display: flex;
@@ -620,213 +466,6 @@
       margin-bottom: 10px;
     }
 
-    .info-title {
-      font-weight: 600;
-      letter-spacing: -0.01em;
-      font-size: 16px;
-      line-height: 1.25;
-    }
-
-    .info-tag {
-      padding: 6px 10px;
-      border-radius: var(--radius-pill);
-      font-size: 11px;
-      color: rgba(255,255,255,0.66);
-      background: rgba(0,0,0,0.22);
-      border: 1px solid rgba(255,255,255,0.12);
-      white-space: nowrap;
-    }
-
-    .info-desc {
-      font-size: 14px;
-      color: var(--sub);
-      line-height: 1.6;
-      padding-right: 14px;
-    }
-
-    .info-link {
-      margin-top: 14px;
-      font-size: 12px;
-      color: rgba(255,255,255,0.72);
-      display: inline-flex;
-      align-items: center;
-      gap: 8px;
-      opacity: 0.9;
-    }
-
-    .info-link span {
-      opacity: 0.7;
-      transform: translateX(0);
-      transition: transform 0.35s var(--ease-soft), opacity 0.35s var(--ease-soft);
-    }
-
-    .info-card:hover .info-link span {
-      transform: translateX(6px);
-      opacity: 1;
-    }
-
-    @media (max-width: 860px) {
-      .info-card { grid-column: span 12; }
-    }
-
-    @media (max-width: 480px) {
-      .section { margin-top: 64px; }
-      .info-grid { gap: 14px; }
-      .info-card { min-height: 128px; }
-    }
-
-    /* === 底部说明 === */
-    .contact {
-      margin: 96px auto 0;
-      max-width: 700px;
-      text-align: center;
-      opacity: 0;
-      transform: translateY(40px);
-      animation: contactIn 1s var(--ease-soft) forwards;
-      animation-delay: 0.1s;
-    }
-
-    @keyframes contactIn {
-      0% {
-        opacity: 0;
-        transform: translateY(40px);
-      }
-      100% {
-        opacity: 1;
-        transform: translateY(0);
-      }
-    }
-
-    .contact p {
-      font-size: 15px;
-      color: var(--muted);
-      line-height: 1.72;
-      max-width: 620px;
-      margin: 0 auto 26px;
-    }
-
-    @media (max-width: 480px) {
-      .contact {
-        margin-top: 80px;
-      }
-      .contact p {
-        font-size: 14px;
-      }
-    }
-  
-
-    /* === Essentials（方案A）：轻量信息块覆盖（不抢主入口卡的权重） === */
-    .info-grid.essentials {
-      margin-top: 24px;
-      gap: 16px;
-    }
-
-    .info-grid.essentials .info-card {
-      min-height: 124px;
-      padding: 18px 18px 18px;
-      border-radius: 22px;
-      background: rgba(255, 255, 255, 0.045);
-      border: 1px solid rgba(255, 255, 255, 0.11);
-      backdrop-filter: blur(14px);
-      -webkit-backdrop-filter: blur(14px);
-      box-shadow: 0 10px 28px rgba(0, 0, 0, 0.45);
-      transform: translateY(0);
-    }
-
-    .info-grid.essentials .info-card:hover {
-      transform: translateY(-3px);
-      border-color: rgba(255, 255, 255, 0.18);
-      background: rgba(255, 255, 255, 0.06);
-      box-shadow: 0 14px 36px rgba(0, 0, 0, 0.55);
-    }
-
-    .info-grid.essentials .info-title {
-      font-size: 16px;
-      letter-spacing: -0.01em;
-    }
-
-    .info-grid.essentials .info-desc {
-      font-size: 14px;
-      line-height: 1.62;
-      color: rgba(255, 255, 255, 0.74);
-      padding-right: 10px;
-    }
-
-    .info-grid.essentials .info-link {
-      margin-top: 12px;
-      font-size: 12px;
-      color: rgba(255, 255, 255, 0.62);
-      opacity: 0.95;
-    }
-
-    .info-grid.essentials .info-tag {
-      background: rgba(0, 0, 0, 0.18);
-      border-color: rgba(255, 255, 255, 0.11);
-      color: rgba(255, 255, 255, 0.62);
-    }
-
-    @media (max-width: 480px) {
-      .info-grid.essentials .info-card {
-        min-height: 118px;
-        padding: 16px 16px 16px;
-      }
-    }
-
-    /* === Essentials 轻量化（方案 A：说明区降权） === */
-    .info-grid.essentials {
-      gap: 16px;
-    }
-
-    .info-grid.essentials .info-card {
-      background: rgba(255, 255, 255, 0.045);
-      border: 1px solid rgba(255, 255, 255, 0.10);
-      box-shadow: 0 10px 28px rgba(0, 0, 0, 0.45);
-      backdrop-filter: blur(14px);
-      -webkit-backdrop-filter: blur(14px);
-      min-height: 124px;
-    }
-
-    .info-grid.essentials .info-card:hover {
-      transform: translateY(-2px);
-      background: rgba(255, 255, 255, 0.06);
-      border-color: rgba(255, 255, 255, 0.16);
-    }
-
-    .info-grid.essentials .info-card:active {
-      transform: translateY(-1px) scale(0.995);
-    }
-
-    .info-grid.essentials .info-desc {
-      color: rgba(255, 255, 255, 0.66);
-    }
-
-    .info-grid.essentials .info-tag {
-      background: rgba(255, 255, 255, 0.05);
-      border-color: rgba(255, 255, 255, 0.10);
-      color: rgba(255, 255, 255, 0.62);
-    }
-
-    .info-grid.essentials .info-link {
-      margin-top: 12px;
-      color: rgba(255, 255, 255, 0.55);
-      opacity: 1;
-    }
-
-    .info-grid.essentials .info-link span:last-child {
-      opacity: 0.7;
-    }
-
-    @media (max-width: 640px) {
-      .info-grid.essentials {
-        gap: 14px;
-      }
-      .info-grid.essentials .info-card {
-        box-shadow: 0 8px 22px rgba(0, 0, 0, 0.42);
-        min-height: 118px;
-      }
-    }
-
-    /* === Essentials icons（SF Symbols 风格，轻量） === */
     .info-leading {
       display: inline-flex;
       align-items: center;
@@ -854,20 +493,130 @@
       color: rgba(255, 255, 255, 0.80);
     }
 
-    .info-leading .info-title {
+    .info-title {
+      font-weight: 600;
+      letter-spacing: -0.01em;
+      font-size: 16px;
+      line-height: 1.25;
       white-space: nowrap;
       overflow: hidden;
       text-overflow: ellipsis;
       min-width: 0;
     }
 
+    .info-tag {
+      padding: 6px 10px;
+      border-radius: var(--radius-pill);
+      font-size: 11px;
+      color: rgba(255, 255, 255, 0.66);
+      background: rgba(0, 0, 0, 0.22);
+      border: 1px solid rgba(255, 255, 255, 0.12);
+      white-space: nowrap;
+      flex: 0 0 auto;
+    }
+
+    .info-desc {
+      font-size: 14px;
+      color: var(--sub);
+      line-height: 1.6;
+      padding-right: 14px;
+    }
+
+    .info-link {
+      margin-top: 14px;
+      font-size: 12px;
+      color: rgba(255, 255, 255, 0.72);
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      opacity: 0.9;
+    }
+
+    .info-link span {
+      opacity: 0.7;
+      transform: translateX(0);
+      transition: transform 0.35s var(--ease-soft), opacity 0.35s var(--ease-soft);
+    }
+
+    .info-card:hover .info-link span { transform: translateX(6px); opacity: 1; }
+
+    @media (max-width: 860px) { .info-card { grid-column: span 12; } }
+    @media (max-width: 480px) {
+      .section { margin-top: 64px; }
+      .info-grid { gap: 14px; }
+      .info-card { min-height: 128px; }
+    }
+
+    .contact {
+      margin: 96px auto 0;
+      max-width: 700px;
+      text-align: center;
+      opacity: 0;
+      transform: translateY(40px);
+      animation: contactIn 1s var(--ease-soft) forwards;
+      animation-delay: 0.1s;
+    }
+
+    @keyframes contactIn {
+      0% { opacity: 0; transform: translateY(40px); }
+      100% { opacity: 1; transform: translateY(0); }
+    }
+
+    .contact p {
+      font-size: 15px;
+      color: var(--muted);
+      line-height: 1.72;
+      max-width: 620px;
+      margin: 0 auto 26px;
+    }
+
+    @media (max-width: 480px) {
+      .contact { margin-top: 80px; }
+      .contact p { font-size: 14px; }
+    }
+
+    .info-grid.essentials { margin-top: 24px; gap: 16px; }
+
+    .info-grid.essentials .info-card {
+      min-height: 124px;
+      padding: 18px;
+      border-radius: 22px;
+      background: rgba(255, 255, 255, 0.045);
+      border: 1px solid rgba(255, 255, 255, 0.10);
+      backdrop-filter: blur(14px);
+      -webkit-backdrop-filter: blur(14px);
+      box-shadow: 0 10px 28px rgba(0, 0, 0, 0.45);
+    }
+
+    .info-grid.essentials .info-card:hover {
+      transform: translateY(-2px);
+      background: rgba(255, 255, 255, 0.06);
+      border-color: rgba(255, 255, 255, 0.16);
+      box-shadow: 0 14px 36px rgba(0, 0, 0, 0.55);
+    }
+
+    .info-grid.essentials .info-card:active { transform: translateY(-1px) scale(0.995); }
+
+    .info-grid.essentials .info-desc {
+      font-size: 14px;
+      line-height: 1.62;
+      color: rgba(255, 255, 255, 0.66);
+      padding-right: 10px;
+    }
+
+    .info-grid.essentials .info-link { margin-top: 12px; font-size: 12px; color: rgba(255, 255, 255, 0.55); opacity: 1; }
+    .info-grid.essentials .info-tag { background: rgba(255, 255, 255, 0.05); border-color: rgba(255, 255, 255, 0.10); color: rgba(255, 255, 255, 0.62); }
+
+    @media (max-width: 640px) {
+      .info-grid.essentials { gap: 14px; }
+      .info-grid.essentials .info-card { min-height: 118px; box-shadow: 0 8px 22px rgba(0, 0, 0, 0.42); }
+    }
   </style>
 </head>
 
 <body>
   <div class="bg-glow"></div>
 
-  <!-- 顶部导航 -->
   <div class="nav-shell">
     <div class="nav">
       <div class="nav-left">
@@ -878,67 +627,63 @@
       <div class="nav-right">
         <a href="#" class="nav-pill" data-i18n="nav_about">关于本站</a>
 
-        <div class="lang-switch">
-          <span class="lang-globe">🌐</span>
-          <button class="lang-btn active" data-lang="zh">中文</button>
-          <button class="lang-btn" data-lang="en">EN</button>
+        <div class="lang-switch" aria-label="Language">
+          <span class="lang-globe" aria-hidden="true">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
+              <circle cx="12" cy="12" r="10" />
+              <path d="M2 12h20" />
+              <path d="M12 2a15 15 0 0 1 0 20" />
+              <path d="M12 2a15 15 0 0 0 0 20" />
+            </svg>
+          </span>
+          <button class="lang-btn" data-lang="zh" type="button">中文</button>
+          <button class="lang-btn" data-lang="en" type="button">EN</button>
         </div>
       </div>
     </div>
   </div>
 
-  <!-- 页面主体 -->
   <div class="page">
     <div class="hero-wrap">
       <div class="hero">
         <h1 data-i18n="hero_title">NUIST 2026 新生入学助手</h1>
-        <p data-i18n="hero_desc">
-          为你准备了一切你真正会用到的入学信息，用最简洁、友好、清晰的方式呈现。
-        </p>
-        <div class="hero-sub" data-i18n="hero_sub">
-          我们的目标很简单：让你的大学第一天，从「放心」开始。
-        </div>
+        <p data-i18n="hero_desc">为你准备了一切你真正会用到的入学信息，用最简洁、友好、清晰的方式呈现。</p>
+        <div class="hero-sub" data-i18n="hero_sub">我们的目标很简单：让你的大学第一天，从「放心」开始。</div>
       </div>
     </div>
 
-    <!-- 功能卡片区 -->
-    <div class="grid">
-      <a class="card" href="#">
+    <div class="grid" aria-label="Primary actions">
+      <a class="card" href="#" data-placeholder-link="true">
         <h3 data-i18n="card_flow">校园流量卡</h3>
         <p data-i18n="card_flow_p">将为你整理最适合 NUIST 的校园卡方案。</p>
-        <span class="arrow">→</span>
+        <span class="arrow" aria-hidden="true">→</span>
       </a>
 
-      <a class="card" href="#">
+      <a class="card" href="#" data-placeholder-link="true">
         <h3 data-i18n="card_dorm">寝室用品</h3>
-        <p data-i18n="card_dorm_p">
-          未来将根据厂家合作情况，为你提供可一键下单的寝室必需品清单。
-        </p>
-        <span class="arrow">→</span>
+        <p data-i18n="card_dorm_p">未来将根据厂家合作情况，为你提供可一键下单的寝室必需品清单。</p>
+        <span class="arrow" aria-hidden="true">→</span>
       </a>
 
-      <a class="card" href="https://map.nuist.edu.cn" target="_blank">
+      <a class="card" href="https://map.nuist.edu.cn" target="_blank" rel="noopener noreferrer">
         <h3 data-i18n="card_map">校园地图</h3>
         <p data-i18n="card_map_p">导航全校建筑，让你第一天不迷路。</p>
-        <span class="arrow">→</span>
+        <span class="arrow" aria-hidden="true">→</span>
       </a>
 
-      <a class="card" href="https://www.nuist.edu.cn/" target="_blank">
+      <a class="card" href="https://www.nuist.edu.cn/" target="_blank" rel="noopener noreferrer">
         <h3 data-i18n="card_official">校园官网入口</h3>
         <p data-i18n="card_official_p">快速访问学校官网。</p>
-        <span class="arrow">→</span>
+        <span class="arrow" aria-hidden="true">→</span>
       </a>
 
       <a class="card" href="wechat-add.html">
         <h3 data-i18n="card_contact">本站负责人联系方式</h3>
-        <p data-i18n="card_contact_p">
-          添加学长微信：获取入学帮助 &amp; 即时答疑。
-        </p>
-        <span class="arrow">→</span>
+        <p data-i18n="card_contact_p">添加学长微信：获取入学帮助 &amp; 即时答疑。</p>
+        <span class="arrow" aria-hidden="true">→</span>
       </a>
     </div>
 
-    <!-- 模块 1：新生必看 -->
     <section class="section" aria-label="Freshman essentials">
       <div class="section-head">
         <div class="kicker"><span class="kicker-dot"></span><span data-i18n="m1_kicker">新生必看</span></div>
@@ -947,18 +692,17 @@
           <span class="desc-line" data-i18n="m1_desc_1">报到流程、系统入口、生活准备与常见误区。</span>
           <span class="desc-line" data-i18n="m1_desc_2">提前了解，心里会更踏实。</span>
         </div>
-        
         <div class="section-divider" aria-hidden="true"></div>
       </div>
 
       <div class="info-grid essentials">
-        <a class="info-card" href="#" role="button" aria-label="Check-in flow">
+        <a class="info-card" href="#" role="button" aria-label="Check-in flow" data-placeholder-link="true">
           <div class="info-top">
             <div class="info-leading">
               <span class="info-icon" aria-hidden="true">
                 <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
-                  <path d="M9 11l2 2 4-4"/>
-                  <path d="M12 22c5.5 0 10-4.5 10-10S17.5 2 12 2 2 6.5 2 12s4.5 10 10 10z"/>
+                  <path d="M9 11l2 2 4-4" />
+                  <path d="M12 22c5.5 0 10-4.5 10-10S17.5 2 12 2 2 6.5 2 12s4.5 10 10 10z" />
                 </svg>
               </span>
               <div class="info-title" data-i18n="m1_a_title">报到全流程</div>
@@ -969,20 +713,20 @@
             <span class="desc-line" data-i18n="m1_a_desc_1">从下车、领取资料到走进宿舍。</span>
             <span class="desc-line" data-i18n="m1_a_desc_2">按真实顺序，带你提前走一遍。</span>
           </div>
-          <div class="info-link"><span data-i18n="m1_more">查看详情</span><span>→</span></div>
+          <div class="info-link"><span data-i18n="m1_more">查看详情</span><span aria-hidden="true">→</span></div>
         </a>
 
-        <a class="info-card" href="#" role="button" aria-label="Packing checklist">
+        <a class="info-card" href="#" role="button" aria-label="Packing checklist" data-placeholder-link="true">
           <div class="info-top">
             <div class="info-leading">
               <span class="info-icon" aria-hidden="true">
                 <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
-                  <path d="M8 6h13"/>
-                  <path d="M8 12h13"/>
-                  <path d="M8 18h13"/>
-                  <path d="M3 6h.01"/>
-                  <path d="M3 12h.01"/>
-                  <path d="M3 18h.01"/>
+                  <path d="M8 6h13" />
+                  <path d="M8 12h13" />
+                  <path d="M8 18h13" />
+                  <path d="M3 6h.01" />
+                  <path d="M3 12h.01" />
+                  <path d="M3 18h.01" />
                 </svg>
               </span>
               <div class="info-title" data-i18n="m1_b_title">行前准备清单</div>
@@ -993,16 +737,16 @@
             <span class="desc-line" data-i18n="m1_b_desc_1">哪些一定要带，哪些可以到校再买。</span>
             <span class="desc-line" data-i18n="m1_b_desc_2">少一点负担，少走一些弯路。</span>
           </div>
-          <div class="info-link"><span data-i18n="m1_more">查看详情</span><span>→</span></div>
+          <div class="info-link"><span data-i18n="m1_more">查看详情</span><span aria-hidden="true">→</span></div>
         </a>
 
-        <a class="info-card" href="#" role="button" aria-label="Campus systems hub">
+        <a class="info-card" href="#" role="button" aria-label="Campus systems hub" data-placeholder-link="true">
           <div class="info-top">
             <div class="info-leading">
               <span class="info-icon" aria-hidden="true">
                 <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
-                  <path d="M12 21s-6-4.4-6-10a6 6 0 1 1 12 0c0 5.6-6 10-6 10z"/>
-                  <path d="M12 11.5a2 2 0 1 0 0-4 2 2 0 0 0 0 4z"/>
+                  <path d="M12 21s-6-4.4-6-10a6 6 0 1 1 12 0c0 5.6-6 10-6 10z" />
+                  <path d="M12 11.5a2 2 0 1 0 0-4 2 2 0 0 0 0 4z" />
                 </svg>
               </span>
               <div class="info-title" data-i18n="m1_c_title">校内系统导航</div>
@@ -1013,17 +757,17 @@
             <span class="desc-line" data-i18n="m1_c_desc_1">教务、校园卡、网络、缴费等常用系统。</span>
             <span class="desc-line" data-i18n="m1_c_desc_2">集中整理，避免到处寻找入口。</span>
           </div>
-          <div class="info-link"><span data-i18n="m1_more">查看详情</span><span>→</span></div>
+          <div class="info-link"><span data-i18n="m1_more">查看详情</span><span aria-hidden="true">→</span></div>
         </a>
 
-        <a class="info-card" href="#" role="button" aria-label="Pitfall guide">
+        <a class="info-card" href="#" role="button" aria-label="Pitfall guide" data-placeholder-link="true">
           <div class="info-top">
             <div class="info-leading">
               <span class="info-icon" aria-hidden="true">
                 <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
-                  <path d="M12 2l8 4v6c0 5-3.5 9.4-8 10-4.5-.6-8-5-8-10V6l8-4z"/>
-                  <path d="M12 8v5"/>
-                  <path d="M12 17h.01"/>
+                  <path d="M12 2l8 4v6c0 5-3.5 9.4-8 10-4.5-.6-8-5-8-10V6l8-4z" />
+                  <path d="M12 8v5" />
+                  <path d="M12 17h.01" />
                 </svg>
               </span>
               <div class="info-title" data-i18n="m1_d_title">新生避坑提示</div>
@@ -1034,221 +778,230 @@
             <span class="desc-line" data-i18n="m1_d_desc_1">常见误区与一些底线建议。</span>
             <span class="desc-line" data-i18n="m1_d_desc_2">不是所有东西，都需要第一时间决定。</span>
           </div>
-          <div class="info-link"><span data-i18n="m1_more">查看详情</span><span>→</span></div>
+          <div class="info-link"><span data-i18n="m1_more">查看详情</span><span aria-hidden="true">→</span></div>
         </a>
       </div>
     </section>
 
-    <!-- 底部联系方式 -->
     <div class="contact">
-      <p data-i18n="contact_desc">
-        如果你对内容有任何建议，也欢迎通过微信联系我。本站将在未来持续完善，以帮助更多的新生。
-      </p>
+      <p data-i18n="contact_desc">如果你对内容有任何建议，也欢迎通过微信联系我。本站将在未来持续完善，以帮助更多的新生。</p>
     </div>
   </div>
 
-  <!-- JS（滚动动效 + 语言切换 + 卡片入场） -->
   <script>
-    // 顶部导航随滚动收缩
-    const navShell = document.querySelector(".nav-shell");
-    let lastScroll = 0;
-
-    window.addEventListener("scroll", () => {
-      const cur = window.scrollY;
-      if (cur > lastScroll && cur > 32) {
-        navShell.classList.add("nav-mini");
-      } else if (cur < 24) {
-        navShell.classList.remove("nav-mini");
+    (function () {
+      function safeSetText(el, value) {
+        el.textContent = value == null ? "" : String(value);
       }
-      lastScroll = cur;
-    });
 
-    // 卡片入场动画
-    const cards = document.querySelectorAll(".card");
-    const observer = new IntersectionObserver(
-      (entries) => {
-        entries.forEach((e) => {
-          if (e.isIntersecting) e.target.classList.add("visible");
+      function applyLanguage(lang) {
+        var dict = i18n[lang] || i18n.zh;
+        document.documentElement.lang = lang === "zh" ? "zh-CN" : "en";
+        var nodes = document.querySelectorAll("[data-i18n]");
+        nodes.forEach(function (el) {
+          var key = el.dataset.i18n;
+          safeSetText(el, dict[key]);
         });
-      },
-      { threshold: 0.2 }
-    );
-
-    cards.forEach((c) => observer.observe(c));
-
-    // 卡片动态光源（桌面端效果）
-    const isCoarsePointer = window.matchMedia("(pointer: coarse)").matches;
-    if (!isCoarsePointer) {
-      cards.forEach((card) => {
-        card.addEventListener("pointermove", (e) => {
-          const rect = card.getBoundingClientRect();
-          const x = ((e.clientX - rect.left) / rect.width) * 100;
-          const y = ((e.clientY - rect.top) / rect.height) * 100;
-          card.style.setProperty("--x", x + "%");
-          card.style.setProperty("--y", y + "%");
-        });
-      });
-    }
-
-    // 语言切换
-    const langBtns = document.querySelectorAll(".lang-btn");
-
-    const i18n = {
-      zh: {
-        app_title: "NUIST 2026 入学助手",
-        nav_status: "欢迎，2026级新同学",
-        nav_about: "关于本站",
-
-        hero_title: "NUIST 2026 新生入学助手",
-        hero_desc:
-          "为你准备了一切你真正会用到的入学信息，用最简洁、友好、清晰的方式呈现。",
-        hero_sub: "我们的目标很简单：让你的大学第一天，从「放心」开始。",
-
-        card_flow: "校园流量卡",
-        card_flow_p: "将为你整理最适合 NUIST 的校园卡方案。",
-
-        card_dorm: "寝室用品",
-        card_dorm_p:
-          "未来将根据厂家合作情况，为你提供一键下单的寝室必需品清单。",
-
-        card_map: "校园地图",
-        card_map_p: "导航全校建筑，让你第一天不迷路。",
-
-        card_official: "校园官网入口",
-        card_official_p: "快速访问学校官网。",
-
-        card_contact: "本站负责人联系方式",
-        card_contact_p: "添加学长微信：获取入学帮助 & 即时答疑。",
-
-        m1_kicker: "新生必看",
-        m1_title: "开学前，把关键事情一次搞清楚",
-        m1_desc: "",
-        m1_desc_1: "Check-in, campus systems, what to pack, and common pitfalls.",
-        m1_desc_2: "A quick read now saves you stress later.",
-        m1_desc_1: "报到流程、系统入口、生活准备与常见误区。",
-        m1_desc_2: "提前了解，心里会更踏实。",
-        m1_more: "查看详情",
-
-        m1_a_title: "报到全流程",
-        m1_a_tag: "到校当天",
-        m1_a_desc: "",
-        m1_a_desc_1: "From arrival to stepping into your dorm.",
-        m1_a_desc_2: "In the real order you will go through.",
-        m1_a_desc_1: "从下车、领取资料到走进宿舍。",
-        m1_a_desc_2: "按真实顺序，带你提前走一遍。",
-
-        m1_b_title: "行前准备清单",
-        m1_b_tag: "打包前",
-        m1_b_desc: "",
-        m1_b_desc_1: "What you should bring, and what can wait until you arrive.",
-        m1_b_desc_2: "Less to carry. Fewer detours.",
-        m1_b_desc_1: "哪些一定要带，哪些可以到校再买。",
-        m1_b_desc_2: "少一点负担，少走一些弯路。",
-
-        m1_c_title: "校内系统导航",
-        m1_c_tag: "日常必用",
-        m1_c_desc: "",
-        m1_c_desc_1: "Academic, campus card, network and payment systems.",
-        m1_c_desc_2: "Collected here, so you don’t have to hunt for links.",
-        m1_c_desc_1: "教务、校园卡、网络、缴费等常用系统。",
-        m1_c_desc_2: "集中整理，避免到处寻找入口。",
-
-        m1_d_title: "新生避坑提示",
-        m1_d_tag: "先看再买",
-        m1_d_desc: "",
-        m1_d_desc_1: "Common traps and a few baseline tips.",
-        m1_d_desc_2: "Not everything needs a decision on day one.",
-        m1_d_desc_1: "常见误区与一些底线建议。",
-        m1_d_desc_2: "不是所有东西，都需要第一时间决定。",
-
-        contact_desc:
-          "如果你对内容有任何建议，也欢迎通过微信联系我。本站将在未来持续完善，以帮助更多的新生。"
-      },
-      en: {
-        app_title: "NUIST 2026 Onboarding Assistant",
-        nav_status: "Welcome, Class of 2026",
-        nav_about: "About",
-
-        hero_title: "NUIST 2026 Onboarding Assistant",
-        hero_desc:
-          "Everything you truly need for your first days in university, presented clearly, simply, humanly.",
-        hero_sub: "Our goal is simple: your Day 1 starts with peace of mind.",
-
-        card_flow: "Campus SIM Card",
-        card_flow_p: "We will compare and provide the best campus SIM plans.",
-
-        card_dorm: "Dorm Essentials",
-        card_dorm_p:
-          "When supplier partnerships are ready, you will be able to buy essentials in one click.",
-
-        card_map: "Campus Map",
-        card_map_p: "Navigate the campus effortlessly from Day 1.",
-
-        card_official: "Official Website",
-        card_official_p: "Quick access to NUIST official site.",
-
-        card_contact: "Contact the Author",
-        card_contact_p: "Add my WeChat for assistance and instant Q&A.",
-
-        m1_kicker: "Essentials",
-        m1_title: "Before you arrive, get the key things right",
-        m1_desc: "Check-in steps, packing checklist, common pitfalls, and campus system entry points—organized clearly for you.",
-        m1_more: "Learn more",
-        m1_a_title: "Check-in Flow",
-        m1_a_tag: "Arrival day",
-        m1_a_desc: "From getting off the bus to your dorm: key steps, FAQs, and timing tips.",
-        m1_b_title: "Packing List",
-        m1_b_tag: "Before you pack",
-        m1_b_desc: "What to bring, what to skip, and what you can buy after arrival.",
-        m1_c_title: "Campus Systems",
-        m1_c_tag: "Daily use",
-        m1_c_desc: "A curated hub of academic, campus card, and network entry points (updates coming).",
-        m1_d_title: "Pitfall Guide",
-        m1_d_tag: "Read first",
-        m1_d_desc: "What tends to mislead? What purchases can wait? Clear baseline advice.",
-
-        contact_desc:
-          "If you have suggestions, feel free to reach out. This site will keep improving for future freshmen."
+        document.title = dict.app_title || document.title;
       }
-    };
 
-    function applyLanguage(lang) {
-      const dict = i18n[lang] || i18n.zh;
-      document.documentElement.lang = lang === "zh" ? "zh-CN" : "en";
+      function setActiveLang(lang) {
+        langBtns.forEach(function (b) { b.classList.remove("active"); });
+        var active = document.querySelector('.lang-btn[data-lang="' + lang + '"]');
+        if (active) active.classList.add("active");
+      }
 
-      document.querySelectorAll("[data-i18n]").forEach((el) => {
-        const key = el.dataset.i18n;
-        el.textContent = dict[key] || "";
-      });
+      function getSavedLang() {
+        try {
+          return localStorage.getItem("lang") || "zh";
+        } catch (e) {
+          return "zh";
+        }
+      }
 
-      document.title = dict.app_title;
-    }
-
-    langBtns.forEach((btn) => {
-      btn.addEventListener("click", () => {
-        langBtns.forEach((b) => b.classList.remove("active"));
-        btn.classList.add("active");
-        const lang = btn.dataset.lang;
+      function setSavedLang(lang) {
         try {
           localStorage.setItem("lang", lang);
         } catch (e) {}
-        applyLanguage(lang);
-      });
-    });
-
-    const saved = (function () {
-      try {
-        return localStorage.getItem("lang") || "zh";
-      } catch (e) {
-        return "zh";
       }
-    })();
 
-    applyLanguage(saved);
-    const activeBtn = document.querySelector(
-      `.lang-btn[data-lang="${saved}"]`
-    );
-    if (activeBtn) activeBtn.classList.add("active");
+      var navShell = document.querySelector(".nav-shell");
+      var lastScroll = 0;
+
+      window.addEventListener("scroll", function () {
+        if (!navShell) return;
+        var cur = window.scrollY || 0;
+        if (cur > lastScroll && cur > 32) {
+          navShell.classList.add("nav-mini");
+        } else if (cur < 24) {
+          navShell.classList.remove("nav-mini");
+        }
+        lastScroll = cur;
+      });
+
+      var cards = document.querySelectorAll(".card");
+      if ("IntersectionObserver" in window) {
+        var observer = new IntersectionObserver(
+          function (entries) {
+            entries.forEach(function (e) {
+              if (e.isIntersecting) e.target.classList.add("visible");
+            });
+          },
+          { threshold: 0.2 }
+        );
+        cards.forEach(function (c) { observer.observe(c); });
+      } else {
+        cards.forEach(function (c) { c.classList.add("visible"); });
+      }
+
+      var isCoarsePointer = false;
+      try {
+        isCoarsePointer = window.matchMedia && window.matchMedia("(pointer: coarse)").matches;
+      } catch (e) {
+        isCoarsePointer = false;
+      }
+
+      if (!isCoarsePointer) {
+        cards.forEach(function (card) {
+          card.addEventListener("pointermove", function (e) {
+            var rect = card.getBoundingClientRect();
+            var x = ((e.clientX - rect.left) / rect.width) * 100;
+            var y = ((e.clientY - rect.top) / rect.height) * 100;
+            card.style.setProperty("--x", x + "%");
+            card.style.setProperty("--y", y + "%");
+          });
+        });
+      }
+
+      document.querySelectorAll('[data-placeholder-link="true"]').forEach(function (a) {
+        a.addEventListener("click", function (e) {
+          e.preventDefault();
+        });
+      });
+
+      var langBtns = document.querySelectorAll(".lang-btn");
+
+      var i18n = {
+        zh: {
+          app_title: "NUIST 2026 入学助手",
+          nav_status: "欢迎，2026级新同学",
+          nav_about: "关于本站",
+
+          hero_title: "NUIST 2026 新生入学助手",
+          hero_desc: "为你准备了一切你真正会用到的入学信息，用最简洁、友好、清晰的方式呈现。",
+          hero_sub: "我们的目标很简单：让你的大学第一天，从「放心」开始。",
+
+          card_flow: "校园流量卡",
+          card_flow_p: "将为你整理最适合 NUIST 的校园卡方案。",
+
+          card_dorm: "寝室用品",
+          card_dorm_p: "未来将根据厂家合作情况，为你提供可一键下单的寝室必需品清单。",
+
+          card_map: "校园地图",
+          card_map_p: "导航全校建筑，让你第一天不迷路。",
+
+          card_official: "校园官网入口",
+          card_official_p: "快速访问学校官网。",
+
+          card_contact: "本站负责人联系方式",
+          card_contact_p: "添加学长微信：获取入学帮助 & 即时答疑。",
+
+          m1_kicker: "新生必看",
+          m1_title: "开学前，把重要的事理清楚",
+          m1_desc_1: "报到流程、系统入口、生活准备与常见误区。",
+          m1_desc_2: "提前了解，心里会更踏实。",
+          m1_more: "查看详情",
+
+          m1_a_title: "报到全流程",
+          m1_a_tag: "到校当天",
+          m1_a_desc_1: "从下车、领取资料到走进宿舍。",
+          m1_a_desc_2: "按真实顺序，带你提前走一遍。",
+
+          m1_b_title: "行前准备清单",
+          m1_b_tag: "打包前",
+          m1_b_desc_1: "哪些一定要带，哪些可以到校再买。",
+          m1_b_desc_2: "少一点负担，少走一些弯路。",
+
+          m1_c_title: "校内系统导航",
+          m1_c_tag: "日常必用",
+          m1_c_desc_1: "教务、校园卡、网络、缴费等常用系统。",
+          m1_c_desc_2: "集中整理，避免到处寻找入口。",
+
+          m1_d_title: "新生避坑提示",
+          m1_d_tag: "先看再买",
+          m1_d_desc_1: "常见误区与一些底线建议。",
+          m1_d_desc_2: "不是所有东西，都需要第一时间决定。",
+
+          contact_desc: "如果你对内容有任何建议，也欢迎通过微信联系我。本站将在未来持续完善，以帮助更多的新生。"
+        },
+        en: {
+          app_title: "NUIST 2026 Onboarding Assistant",
+          nav_status: "Welcome, Class of 2026",
+          nav_about: "About",
+
+          hero_title: "NUIST 2026 Onboarding Assistant",
+          hero_desc: "Everything you truly need for your first days in university, presented clearly, simply, humanly.",
+          hero_sub: "Our goal is simple: your Day 1 starts with peace of mind.",
+
+          card_flow: "Campus SIM Card",
+          card_flow_p: "We will compare and provide the best campus SIM plans.",
+
+          card_dorm: "Dorm Essentials",
+          card_dorm_p: "When supplier partnerships are ready, you will be able to buy essentials in one click.",
+
+          card_map: "Campus Map",
+          card_map_p: "Navigate the campus effortlessly from Day 1.",
+
+          card_official: "Official Website",
+          card_official_p: "Quick access to the university website.",
+
+          card_contact: "Contact the Author",
+          card_contact_p: "Add my WeChat for help and instant Q&A.",
+
+          m1_kicker: "Essentials",
+          m1_title: "Before you arrive, get the key things right",
+          m1_desc_1: "Check-in, campus systems, what to pack, and common pitfalls.",
+          m1_desc_2: "A quick read now saves you stress later.",
+          m1_more: "Learn more",
+
+          m1_a_title: "Check-in Flow",
+          m1_a_tag: "Arrival day",
+          m1_a_desc_1: "From arrival to stepping into your dorm.",
+          m1_a_desc_2: "In the real order you will go through.",
+
+          m1_b_title: "Packing List",
+          m1_b_tag: "Before you pack",
+          m1_b_desc_1: "What you should bring, and what can wait until you arrive.",
+          m1_b_desc_2: "Less to carry. Fewer detours.",
+
+          m1_c_title: "Campus Systems",
+          m1_c_tag: "Daily use",
+          m1_c_desc_1: "Academic, campus card, network and payment systems.",
+          m1_c_desc_2: "Collected here, so you do not have to hunt for links.",
+
+          m1_d_title: "Pitfall Guide",
+          m1_d_tag: "Read first",
+          m1_d_desc_1: "Common traps and a few baseline tips.",
+          m1_d_desc_2: "Not everything needs a decision on day one.",
+
+          contact_desc: "If you have suggestions, feel free to reach out. This site will keep improving for future freshmen."
+        }
+      };
+
+      langBtns.forEach(function (btn) {
+        btn.addEventListener("click", function () {
+          var lang = btn.dataset.lang;
+          setSavedLang(lang);
+          setActiveLang(lang);
+          applyLanguage(lang);
+        });
+      });
+
+      var saved = getSavedLang();
+      setActiveLang(saved);
+      applyLanguage(saved);
+    })();
   </script>
 </body>
 </html>
+
