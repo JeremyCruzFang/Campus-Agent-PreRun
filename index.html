@@ -552,6 +552,16 @@
       margin-bottom: 10px;
     }
 
+    .section-desc{
+      margin: 0 auto 0;
+      max-width: 720px;
+      font-size: 14px;
+      line-height: 1.7;
+      color: var(--sub);
+    }
+
+    .desc-line{display:block;}
+
     
 
     .section-divider {
@@ -932,7 +942,11 @@
     <section class="section" aria-label="Freshman essentials">
       <div class="section-head">
         <div class="kicker"><span class="kicker-dot"></span><span data-i18n="m1_kicker">新生必看</span></div>
-        <div class="section-title" data-i18n="m1_title">开学前，把关键事情一次搞清楚</div>
+        <div class="section-title" data-i18n="m1_title">开学前，把重要的事理清楚</div>
+        <div class="section-desc">
+          <span class="desc-line" data-i18n="m1_desc_1">报到流程、系统入口、生活准备与常见误区。</span>
+          <span class="desc-line" data-i18n="m1_desc_2">提前了解，心里会更踏实。</span>
+        </div>
         
         <div class="section-divider" aria-hidden="true"></div>
       </div>
@@ -951,7 +965,10 @@
             </div>
             <div class="info-tag" data-i18n="m1_a_tag">到校当天</div>
           </div>
-          <div class="info-desc" data-i18n="m1_a_desc">从下车、领资料到进宿舍：按真实顺序带你走一遍。</div>
+          <div class="info-desc">
+            <span class="desc-line" data-i18n="m1_a_desc_1">从下车、领取资料到走进宿舍。</span>
+            <span class="desc-line" data-i18n="m1_a_desc_2">按真实顺序，带你提前走一遍。</span>
+          </div>
           <div class="info-link"><span data-i18n="m1_more">查看详情</span><span>→</span></div>
         </a>
 
@@ -972,7 +989,10 @@
             </div>
             <div class="info-tag" data-i18n="m1_b_tag">打包前</div>
           </div>
-          <div class="info-desc" data-i18n="m1_b_desc">哪些必须带、哪些建议到校再买：避免行李冗余与踩坑。</div>
+          <div class="info-desc">
+            <span class="desc-line" data-i18n="m1_b_desc_1">哪些一定要带，哪些可以到校再买。</span>
+            <span class="desc-line" data-i18n="m1_b_desc_2">少一点负担，少走一些弯路。</span>
+          </div>
           <div class="info-link"><span data-i18n="m1_more">查看详情</span><span>→</span></div>
         </a>
 
@@ -989,7 +1009,10 @@
             </div>
             <div class="info-tag" data-i18n="m1_c_tag">日常必用</div>
           </div>
-          <div class="info-desc" data-i18n="m1_c_desc">教务、校园卡、网络、缴费等入口合集（后续持续更新）。</div>
+          <div class="info-desc">
+            <span class="desc-line" data-i18n="m1_c_desc_1">教务、校园卡、网络、缴费等常用系统。</span>
+            <span class="desc-line" data-i18n="m1_c_desc_2">集中整理，避免到处寻找入口。</span>
+          </div>
           <div class="info-link"><span data-i18n="m1_more">查看详情</span><span>→</span></div>
         </a>
 
@@ -1007,7 +1030,10 @@
             </div>
             <div class="info-tag" data-i18n="m1_d_tag">先看再买</div>
           </div>
-          <div class="info-desc" data-i18n="m1_d_desc">高频误区与底线建议：帮你避免不必要的花钱和折腾。</div>
+          <div class="info-desc">
+            <span class="desc-line" data-i18n="m1_d_desc_1">常见误区与一些底线建议。</span>
+            <span class="desc-line" data-i18n="m1_d_desc_2">不是所有东西，都需要第一时间决定。</span>
+          </div>
           <div class="info-link"><span data-i18n="m1_more">查看详情</span><span>→</span></div>
         </a>
       </div>
@@ -1096,24 +1122,44 @@
 
         m1_kicker: "新生必看",
         m1_title: "开学前，把关键事情一次搞清楚",
-        m1_desc: "报到流程、系统入口、生活准备与常见误区——先看一遍，心里就有底。",
+        m1_desc: "",
+        m1_desc_1: "Check-in, campus systems, what to pack, and common pitfalls.",
+        m1_desc_2: "A quick read now saves you stress later.",
+        m1_desc_1: "报到流程、系统入口、生活准备与常见误区。",
+        m1_desc_2: "提前了解，心里会更踏实。",
         m1_more: "查看详情",
 
         m1_a_title: "报到全流程",
         m1_a_tag: "到校当天",
-        m1_a_desc: "从下车、领资料到进宿舍：按真实顺序带你走一遍。",
+        m1_a_desc: "",
+        m1_a_desc_1: "From arrival to stepping into your dorm.",
+        m1_a_desc_2: "In the real order you will go through.",
+        m1_a_desc_1: "从下车、领取资料到走进宿舍。",
+        m1_a_desc_2: "按真实顺序，带你提前走一遍。",
 
         m1_b_title: "行前准备清单",
         m1_b_tag: "打包前",
-        m1_b_desc: "哪些必须带、哪些建议到校再买：避免行李冗余与踩坑。",
+        m1_b_desc: "",
+        m1_b_desc_1: "What you should bring, and what can wait until you arrive.",
+        m1_b_desc_2: "Less to carry. Fewer detours.",
+        m1_b_desc_1: "哪些一定要带，哪些可以到校再买。",
+        m1_b_desc_2: "少一点负担，少走一些弯路。",
 
         m1_c_title: "校内系统导航",
         m1_c_tag: "日常必用",
-        m1_c_desc: "教务、校园卡、网络、缴费等入口合集（后续持续更新）。",
+        m1_c_desc: "",
+        m1_c_desc_1: "Academic, campus card, network and payment systems.",
+        m1_c_desc_2: "Collected here, so you don’t have to hunt for links.",
+        m1_c_desc_1: "教务、校园卡、网络、缴费等常用系统。",
+        m1_c_desc_2: "集中整理，避免到处寻找入口。",
 
         m1_d_title: "新生避坑提示",
         m1_d_tag: "先看再买",
-        m1_d_desc: "高频误区与底线建议：帮你避免不必要的花钱和折腾。",
+        m1_d_desc: "",
+        m1_d_desc_1: "Common traps and a few baseline tips.",
+        m1_d_desc_2: "Not everything needs a decision on day one.",
+        m1_d_desc_1: "常见误区与一些底线建议。",
+        m1_d_desc_2: "不是所有东西，都需要第一时间决定。",
 
         contact_desc:
           "如果你对内容有任何建议，也欢迎通过微信联系我。本站将在未来持续完善，以帮助更多的新生。"
