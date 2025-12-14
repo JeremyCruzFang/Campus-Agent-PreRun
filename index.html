@@ -1557,6 +1557,26 @@ var toastHideTimer = null;
         hideBrandLoader();
       }
 
+
+      // BFCache safety net for loader: ensure it never blocks UI on back/forward restore
+      window.addEventListener("pageshow", function (e) {
+        var loader = document.getElementById("brandLoader");
+        if (!loader) return;
+        // On BFCache restore (e.persisted === true) or normal show, always reset loader to hidden
+        loader.classList.add("is-hidden");
+        loader.style.display = "none";
+        loader.setAttribute("aria-hidden", "true");
+      });
+
+      window.addEventListener("pagehide", function () {
+        var loader = document.getElementById("brandLoader");
+        if (!loader) return;
+        // Before leaving (including BFCache freeze), reset loader so back won't show a stuck overlay
+        loader.classList.add("is-hidden");
+        loader.style.display = "none";
+        loader.setAttribute("aria-hidden", "true");
+      });
+
 })();
   </script>
 </body>
