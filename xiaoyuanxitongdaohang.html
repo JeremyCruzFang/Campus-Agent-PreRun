@@ -677,7 +677,9 @@
           meta.appendChild(ul);
         }
 
-        // highlight note (network) - toned down
+        divider();
+
+        // highlight note (network) - more prominent
         var note = sys[lang === "zh" ? "highlight_zh" : "highlight_en"];
         if (note) {
           var p = document.createElement("p");
@@ -685,12 +687,12 @@
           p.style.margin = "0";
           p.style.fontSize = "15px";
           p.style.lineHeight = "1.7";
-          p.style.color = "rgba(255,255,255,0.86)";
-          p.style.fontWeight = "600";
+          p.style.color = "rgba(167,139,250,0.92)";
+          p.style.fontWeight = "520";
           meta.appendChild(p);
         }
 
-        
+        divider();
 
         // enterprise wechat note
         var ew = document.createElement("p");
